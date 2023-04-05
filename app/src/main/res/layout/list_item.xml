@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_item"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="#000"
+            android:layout_margin="10dp"
+            />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/iv_item"
+            android:layout_margin="10dp"
+            android:text="운석 팝니다"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            app:layout_constraintStart_toEndOf="@id/iv_item"
+            android:layout_margin="10dp"
+            android:text="신천동 100년 전"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/tv_info"
+            app:layout_constraintStart_toEndOf="@id/iv_item"
+            android:layout_margin="10dp"
+            android:text="9,999,999원"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_chat"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toStartOf="@id/iv_like"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="#000"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_like"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="10dp"
+            android:background="#000"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

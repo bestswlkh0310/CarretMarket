@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.MainFragment.MapFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <GridLayout
+                android:id="@+id/gl_money"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center_horizontal"
+                android:rowCount="2"
+                android:columnCount="4">
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="알바"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="농수산물"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="중고차 직거래"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="쿠폰북"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="부동산 직거래"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="과외/클래스"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="당근미니"
+                    />
+                <androidx.appcompat.widget.AppCompatButton
+                    android:text="당근지도"
+                    />
+            </GridLayout>
+            <View
+                android:id="@+id/v_br"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/gl_money"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="#ECEAEA"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </ScrollView>
+
+
+</FrameLayout>
