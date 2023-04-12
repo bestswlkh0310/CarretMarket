@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.MainFragment.MapFragment">
-
+    tools:context=".view.fragment.MapFragment">
+    <data>
+        <variable
+            name="map"
+            type="com.example.carretmarket.view.fragment.MapFragment" />
+    </data>
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -62,4 +64,4 @@
     </ScrollView>
 
 
-</FrameLayout>
+</layout>
