@@ -1,5 +1,6 @@
 package com.example.carretmarket.network
 
+import com.example.carretmarket.network.service.BoardService
 import com.example.carretmarket.network.service.LoginService
 import com.example.carretmarket.network.service.VerifyService
 import retrofit2.Retrofit
@@ -14,4 +15,5 @@ object RetrofitClient {
         .build()
     var verifyAPI: VerifyService = server.create(VerifyService::class.java)
     var loginAPI: LoginService = server.create(LoginService::class.java)
+    var boardAPI: BoardService = server.create(BoardService::class.java)
 }

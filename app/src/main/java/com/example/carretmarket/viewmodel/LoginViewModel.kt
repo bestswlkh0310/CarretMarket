@@ -31,6 +31,7 @@ class LoginViewModel: ViewModel() {
         verifyKey = runBlocking {
             VerifyKeyFetcher.fetch() ?: exitProcess(-1)
         }
+
         val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw)
         val call = RetrofitClient.loginAPI.login(
             LoginRequest(
