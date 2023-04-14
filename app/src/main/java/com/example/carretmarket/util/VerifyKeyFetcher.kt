@@ -3,6 +3,7 @@ package com.example.carretmarket.util
 import android.util.Log
 import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.network.RetrofitClient
+import com.example.carretmarket.network.base.BaseResponse
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback
@@ -12,14 +13,14 @@ object VerifyKeyFetcher {
     suspend fun fetch(): VerifyKeyResponse? {
         var toReturn: VerifyKeyResponse? = null
         var continuable = false
-        RetrofitClient.verifyAPI.fetchVerifyKey().enqueue(object : Callback<VerifyKeyResponse> {
+        RetrofitClient.verifyAPI.fetchVerifyKey().enqueue(object : Callback<BaseResponse<VerifyKeyResponse>> {
             override fun onResponse(
-                call: Call<VerifyKeyResponse>,
-                response: Response<VerifyKeyResponse>
+                call: Call<BaseResponse<VerifyKeyResponse>>,
+                response: Response<BaseResponse<VerifyKeyResponse>>
             ) {
                 Log.d("FetchVerifyKey", "Yes: ${response.code()}")
                 if (response.code() == 200) {
-                    val keyOrNull = response.body()
+                    val keyOrNull = response.body()?.data
                     if (keyOrNull == null)
                         Log.d("FetchVerifyKey", "Failed to fetch: ${response.code()}")
                     toReturn = keyOrNull
@@ -30,7 +31,7 @@ object VerifyKeyFetcher {
                 }
             }
 
-            override fun onFailure(call: Call<VerifyKeyResponse>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<VerifyKeyResponse>>, t: Throwable) {
                 Log.d("FetchVerifyKey", "Failed to fetch: ${t.stackTraceToString()}")
                 continuable = true
             }

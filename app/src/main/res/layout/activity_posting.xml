@@ -4,13 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
-            name="input"
+            name="posting"
             type="com.example.carretmarket.viewmodel.InputViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.activity.InputActivity">
+        tools:context=".view.activity.PostingActivity">
         <TextView
             android:id="@+id/tv_post"
             android:layout_width="wrap_content"

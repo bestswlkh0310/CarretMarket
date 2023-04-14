@@ -5,6 +5,7 @@ import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.carretmarket.network.RetrofitClient
+import com.example.carretmarket.network.base.BaseResponse
 import com.example.carretmarket.network.request.LoginRequest
 import com.example.carretmarket.network.response.TokenResponse
 import com.example.carretmarket.network.response.VerifyKeyResponse
@@ -41,10 +42,10 @@ class LoginViewModel: ViewModel() {
             )
         )
 
-        call.enqueue(object : Callback<TokenResponse> {
-            override fun onResponse(call: Call<TokenResponse>, response: Response<TokenResponse>) {
+        call.enqueue(object : Callback<BaseResponse<TokenResponse>> {
+            override fun onResponse(call: Call<BaseResponse<TokenResponse>>, response: Response<BaseResponse<TokenResponse>>) {
                 if (response.code() == 200) {
-                    val body = response.body()
+                    val body = response.body()?.data
                     Session.accessToken = body?.accessToken
                     Session.refreshToken = body?.refreshToken
                     context.startActivity(mainIntent)
@@ -54,7 +55,7 @@ class LoginViewModel: ViewModel() {
                 }
             }
 
-            override fun onFailure(call: Call<TokenResponse>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
                 Log.d("LoginRequest", "Failed to login: ${t.stackTraceToString()}")
             }
         })

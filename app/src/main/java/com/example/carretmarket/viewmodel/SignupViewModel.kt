@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import com.example.carretmarket.network.RetrofitClient
+import com.example.carretmarket.network.base.BaseResponse
 import com.example.carretmarket.network.request.RegisterRequest
 import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
@@ -37,15 +38,14 @@ class SignupViewModel: ViewModel() {
         val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw)
 
         val call = RetrofitClient.loginAPI.register(RegisterRequest(id, pwEncrypted, verifyKey.verificationToken))
-
-        call.enqueue(object : Callback<Unit> {
-            override fun onResponse(call: Call<Unit>, response: Response<Unit>) {
+        call.enqueue(object : Callback<BaseResponse<Unit>> {
+            override fun onResponse(call: Call<BaseResponse<Unit>>, response: Response<BaseResponse<Unit>>) {
                 if (response.code() == 200) {
                     context.startActivity(startIntent)
                 }
             }
 
-            override fun onFailure(call: Call<Unit>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
                 Log.d("RegisterRequest", "Failed to register: ${t.stackTraceToString()}")
             }
         })

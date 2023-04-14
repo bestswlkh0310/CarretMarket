@@ -3,5 +3,9 @@ package com.example.carretmarket.network.response
 import com.fasterxml.jackson.annotation.JsonProperty
 
 class BoardListResponse (
-    @JsonProperty val boards: Array<Pair<String, String>>
+    /**
+     * boards: (id, title)
+     * id -> GET board
+     */
+    @JsonProperty val boards: Map<String, String>
 )
