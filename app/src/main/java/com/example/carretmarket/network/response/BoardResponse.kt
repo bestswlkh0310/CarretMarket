@@ -1,6 +1,6 @@
 package com.example.carretmarket.network.response
 
-class BoardResponse(
+data class BoardResponse(
     val id: Long,
     val title: String,
     val content: String,

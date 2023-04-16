@@ -64,9 +64,10 @@ class BoardFragment: Fragment() {
         )
         viewModel.addItems(itemlist)
 
+        val adapter = BoardAdapter(viewModel.itemList)
         // Adapter, LayoutManager 연결
-//        rv.adapter = BoardAdapter(itemlist)
-        rv.adapter = BoardAdapter(viewModel.itemList)
+        // rv.adapter = BoardAdapter(itemlist)
+        rv.adapter = adapter
         rv.layoutManager = LinearLayoutManager(requireContext())
         rv.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -77,12 +78,17 @@ class BoardFragment: Fragment() {
                 }
                 if (!rv.canScrollVertically(-1)) {
                     Log.d(TAG, "onTop - onScrolled() called")
-
                     // TODO: clear() 후 new 받아오기
-//                    viewModel.reloadItem()
+
                 }
             }
         })
+
+        binding.swr.setOnRefreshListener {
+            viewModel.reloadItem()
+            adapter.notifyItemRangeRemoved(0, itemlist.size)
+            binding.swr.isRefreshing = false
+        }
 
         // recyclerView를 가로로 만들기
         // rv.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)

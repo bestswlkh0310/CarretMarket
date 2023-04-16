@@ -13,13 +13,19 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
+        // 초기화
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
         binding.lifecycleOwner = this
         binding.login = viewModel
+
+        // 로그인
         binding.btnLogin.setOnClickListener {
-            viewModel.onClickLogin(this, binding.etInpId.text.toString(), binding.etInpPw.text.toString())
+            viewModel.onClickLogin(this,
+                binding.etInpId.text.toString(),
+                binding.etInpPw.text.toString()
+            )
         }
     }
 }

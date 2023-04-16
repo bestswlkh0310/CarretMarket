@@ -76,6 +76,13 @@ class BoardViewModel: ViewModel() {
     fun reloadItem() {
         Log.d(TAG, "BoardViewModel - reloadItem() called")
         AdapterManager.clearItem(itemList)
-        AdapterManager.addItems(itemList, getItems())
+//
+//        itemList.removeFirst()
+        show()
+    }
+    fun show() {
+        for (i in itemList) {
+            Log.d(TAG, "${i.title} - reloadItem() called")
+        }
     }
 }
