@@ -1,7 +1,6 @@
 package com.example.carretmarket.view.activity
 
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
@@ -33,7 +32,7 @@ class MainActivity : AppCompatActivity() {
                     supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, homeFragment).commit()
                 }
                 R.id.menu_life -> {
-                    val lifeFragment = LifeFragment()
+                    val lifeFragment = BoardFragment()
                     supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, lifeFragment).commit()
                 }
                 R.id.menu_map -> {

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="list_life"
-            type="com.example.carretmarket.view.adapter.LifeAdapter" />
+            type="com.example.carretmarket.view.adapter.BoardAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,12 +25,12 @@
             android:layout_margin="10dp"
             android:paddingBottom="10dp"/>
         <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_info"
+            android:id="@+id/tv_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:text="(~~동) (n시간) 전"
+            android:text="(n시간) 전"
             android:layout_margin="10dp"
             android:paddingBottom="10dp"/>
         <View

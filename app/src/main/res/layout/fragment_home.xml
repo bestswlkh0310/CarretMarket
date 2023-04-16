@@ -8,60 +8,59 @@
             name="home"
             type="com.example.carretmarket.viewmodel.HomeViewModel" />
     </data>
-        <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/app_bar"
+            app:layout_constraintTop_toTopOf="parent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
-                app:layout_constraintTop_toTopOf="parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#fff">
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="#fff">
-                <androidx.appcompat.widget.Toolbar
-                    android:id="@+id/toolbar"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    app:title=" ">
-                    <TextView
-                        android:id="@+id/tv_gujida"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="구지다"
-                        android:textSize="20sp"/>
-                </androidx.appcompat.widget.Toolbar>
-            </com.google.android.material.appbar.AppBarLayout>
+                android:layout_height="match_parent"
+                app:title=" ">
+                <TextView
+                    android:id="@+id/tv_gujida"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ggg"
+                    android:textSize="20sp"/>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_items"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_btn1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="@id/floating_btn2"
-                app:layout_constraintEnd_toEndOf="@id/floating_btn2"
-                app:layout_constraintBottom_toBottomOf="@id/floating_btn2"
-                android:layout_margin="16dp"
-                android:contentDescription="post"
-                app:fabSize="mini"
-                app:backgroundTint="@color/white"
-                app:rippleColor="#000"
-                app:srcCompat="@drawable/ic_create"
-                android:visibility="invisible"/>
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/floating_btn2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_margin="16dp"
-                android:contentDescription="add"
-                app:backgroundTint="@color/white"
-                app:rippleColor="#000"
-                app:srcCompat="@drawable/ic_add"
-                android:visibility="visible"/>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_items"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/floating_btn2"
+            app:layout_constraintEnd_toEndOf="@id/floating_btn2"
+            app:layout_constraintBottom_toBottomOf="@id/floating_btn2"
+            android:layout_margin="16dp"
+            android:contentDescription="post"
+            app:fabSize="mini"
+            app:backgroundTint="@color/white"
+            app:rippleColor="#000"
+            app:srcCompat="@drawable/ic_create"
+            android:visibility="invisible"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="16dp"
+            android:contentDescription="add"
+            app:backgroundTint="@color/white"
+            app:rippleColor="#000"
+            app:srcCompat="@drawable/ic_add"
+            android:visibility="visible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

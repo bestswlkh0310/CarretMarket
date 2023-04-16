@@ -1,6 +1,7 @@
 package com.example.carretmarket.util
 
 object AdapterManager {
+    val TAG: String = "로그"
     fun <T> addItem(itemList: MutableList<T>, item: T) {
         itemList.add(item)
     }

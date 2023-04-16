@@ -12,7 +12,7 @@ interface BoardService {
     fun getBoardById(@Path("id") id: Long?): Call<BaseResponse<BoardResponse>>
 
     @GET("api/v1/board/list")
-    fun getBoards(@Query("timestamp") timestamp: Long?): Call<BaseResponse<BoardListResponse>>
+    fun getBoards(@Query("timestamp") timestamp: Long?): Call<BaseResponse<List<BoardListResponse>>>
 
     @PATCH("api/v1/board/{id}")
     fun patchBoard(@Path("id") id: Long): Call<BaseResponse<Unit>>

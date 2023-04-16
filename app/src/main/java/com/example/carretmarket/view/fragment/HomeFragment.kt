@@ -9,14 +9,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carretmarket.network.model.Item
 import com.example.carretmarket.databinding.FragmentHomeBinding
 import com.example.carretmarket.view.adapter.ItemAdapter
+import com.example.carretmarket.viewmodel.BoardViewModel
 
 class HomeFragment: Fragment() {
     private val binding: FragmentHomeBinding by lazy { FragmentHomeBinding.inflate(layoutInflater) }
-//    private lateinit var viewModel: HomeViewModel
+
     private var isFabOpen = false
     private val 임시list: List<Item> by lazy { arrayListOf(
         Item("na", 213),

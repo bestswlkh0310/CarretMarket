@@ -3,12 +3,10 @@ package com.example.carretmarket.viewmodel
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.ViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
-import com.example.carretmarket.network.request.RegisterRequest
+import com.example.carretmarket.network.request.SignUpRequest
 import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.VerifyKeyFetcher
@@ -22,13 +20,14 @@ import kotlin.system.exitProcess
 class SignupViewModel: ViewModel() {
     var id: String = ""
     val pw: String = ""
+    val email: String = ""
     val TAG: String = "로그"
 
     private lateinit var verifyKey: VerifyKeyResponse
 
     fun onSignupClick(context: Context) {
 
-        Log.d(TAG, "${id} ${pw} - onSignupClick() called")
+        Log.d(TAG, "$id $pw - onSignupClick() called")
 
         verifyKey = runBlocking {
             VerifyKeyFetcher.fetch() ?: exitProcess(-1)
@@ -37,7 +36,14 @@ class SignupViewModel: ViewModel() {
         if (pw.isBlank()) return
         val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw)
 
-        val call = RetrofitClient.loginAPI.register(RegisterRequest(id, pwEncrypted, verifyKey.verificationToken))
+        val call = RetrofitClient.loginAPI.register(
+            SignUpRequest(
+                id,
+                email,
+                pwEncrypted,
+                verifyKey.verificationToken
+            )
+        )
         call.enqueue(object : Callback<BaseResponse<Unit>> {
             override fun onResponse(call: Call<BaseResponse<Unit>>, response: Response<BaseResponse<Unit>>) {
                 if (response.code() == 200) {

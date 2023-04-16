@@ -6,19 +6,19 @@ import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
 import com.example.carretmarket.R
-import com.example.carretmarket.databinding.ActivityPostingBinding
+import com.example.carretmarket.databinding.ActivityBoardBinding
 import com.example.carretmarket.network.request.NewBoardRequest
 import com.example.carretmarket.viewmodel.InputViewModel
 
-class PostingActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityPostingBinding
+class PostActivity : AppCompatActivity() {
+    private lateinit var binding: ActivityBoardBinding
     private lateinit var viewModel: InputViewModel
 
     val TAG: String = "로그"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_posting)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_board)
         viewModel = ViewModelProvider(this).get(InputViewModel::class.java)
         binding.lifecycleOwner = this
         binding.posting = viewModel
@@ -34,9 +34,6 @@ class PostingActivity : AppCompatActivity() {
                     content
                 )
             )
-
-
-
             finish()
         }
     }

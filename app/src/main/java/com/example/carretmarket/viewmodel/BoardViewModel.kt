@@ -4,7 +4,8 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
-import com.example.carretmarket.network.model.Life
+import com.example.carretmarket.network.model.Board
+import com.example.carretmarket.network.model.Item
 import com.example.carretmarket.network.response.BoardListResponse
 import com.example.carretmarket.network.response.BoardResponse
 import com.example.carretmarket.util.AdapterManager
@@ -12,11 +13,14 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class LifeViewModel: ViewModel() {
+class BoardViewModel: ViewModel() {
     val TAG: String = "로그"
-    var itemList: MutableList<Life> = arrayListOf()
+    var itemList: MutableList<Board> = arrayListOf()
 
-    fun addItems(items: MutableList<Life>) {
+    /**
+     * adapter에 게시글들 넣기
+     */
+    fun addItems(items: MutableList<Board>) {
         AdapterManager.addItems(itemList, items)
     }
 
@@ -33,38 +37,45 @@ class LifeViewModel: ViewModel() {
                 }
             }
             override fun onFailure(call: Call<BaseResponse<BoardResponse>>, t: Throwable) {
+
             }
         })
         return board
     }
 
-    fun getItems(timestamp: Long? = null): Map<String, String>? {
+    fun getItems(timestamp: Long? = null): MutableList<Board> {
         val call = RetrofitClient.boardAPI.getBoards(timestamp)
-        var boards: Map<String, String>? = null
-        call.enqueue(object: Callback<BaseResponse<BoardListResponse>> {
+        val boards: MutableList<Board> = arrayListOf()
+        call.enqueue(object: Callback<BaseResponse<List<BoardListResponse>>> {
             override fun onResponse(
-                call: Call<BaseResponse<BoardListResponse>>,
-                response: Response<BaseResponse<BoardListResponse>>
+                call: Call<BaseResponse<List<BoardListResponse>>>,
+                response: Response<BaseResponse<List<BoardListResponse>>>
             ) {
                 if (response.code() == 200) {
-                    boards = response.body()?.data?.boards
+                    response.body()!!.data.forEach {
+                        boards.add(
+                            Board(
+                                it.id,
+                                it.timestamp,
+                                it.title
+                            )
+                        )
+                    }
                 } else {
                     Log.d(TAG, "HomeViewModel() - ${response.message()} called")
                 }
             }
 
-            override fun onFailure(call: Call<BaseResponse<BoardListResponse>>, t: Throwable) {
+            override fun onFailure(call: Call<BaseResponse<List<BoardListResponse>>>, t: Throwable) {
 
             }
         })
         return boards
     }
 
-    fun reloadItem(timestamp: Long? = null) {
+    fun reloadItem() {
+        Log.d(TAG, "BoardViewModel - reloadItem() called")
         AdapterManager.clearItem(itemList)
-        for ((id, title) in getItems(timestamp)?.entries!!) {
-            AdapterManager.addItem(itemList, Life(title, getItem(id.toLong())?.timestamp, id.toLong()))
-        }
-//        AdapterManager.addItems(itemList, getItems(timestamp))
+        AdapterManager.addItems(itemList, getItems())
     }
 }
