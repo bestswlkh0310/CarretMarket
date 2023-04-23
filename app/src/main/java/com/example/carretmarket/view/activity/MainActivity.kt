@@ -22,6 +22,9 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initBottomNav()
+        homeFragment = HomeFragment()
+        supportFragmentManager.beginTransaction().add(R.id.fl_main, homeFragment).commit()
+
     }
 
     private fun initBottomNav() {
@@ -29,29 +32,27 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.menu_home -> {
                     val homeFragment = HomeFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, homeFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, homeFragment).commit()
                 }
                 R.id.menu_life -> {
                     val lifeFragment = BoardFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, lifeFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, lifeFragment).commit()
                 }
                 R.id.menu_map -> {
                     val mapFragment = MapFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, mapFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, mapFragment).commit()
                 }
                 R.id.menu_chat -> {
                     val chatFragment = ChatFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, chatFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, chatFragment).commit()
                 }
                 R.id.menu_profile -> {
                     val profileFragment = ProfileFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, profileFragment).commit()
+                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, profileFragment).commit()
                 }
             }
             true
         }
-        homeFragment = HomeFragment()
-        supportFragmentManager.beginTransaction().add(R.id.fragments_frame, homeFragment).commit()
     }
 
     override fun onBackPressed() {

@@ -10,7 +10,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".view.activity.PostActivity">
+        tools:context=".view.activity.PostingActivity">
         <TextView
             android:id="@+id/tv_post"
             android:layout_width="wrap_content"

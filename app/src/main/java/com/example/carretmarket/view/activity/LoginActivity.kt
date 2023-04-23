@@ -3,28 +3,24 @@ package com.example.carretmarket.view.activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
-import androidx.lifecycle.ViewModelProvider
 import com.example.carretmarket.R
 import com.example.carretmarket.databinding.ActivityLoginBinding
-import com.example.carretmarket.viewmodel.LoginViewModel
+import com.example.carretmarket.view.fragment.OnBoardFragment
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    private lateinit var viewModel: LoginViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
-        // 초기화
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        viewModel = ViewModelProvider(this)[LoginViewModel::class.java]
-        binding.lifecycleOwner = this
-        binding.login = viewModel
+        setContentView(binding.root)
 
-        // 로그인
-        binding.btnLogin.setOnClickListener {
-            viewModel.onClickLogin(this,
-                binding.etInpId.text.toString(),
-                binding.etInpPw.text.toString()
-            )
-        }
+//        val loginIntent = Intent(this, LoginActivity::class.java)
+//        val signupIntent = Intent(this, SignupActivity::class.java)
+
+        val onBoardFragment = OnBoardFragment()
+        supportFragmentManager.beginTransaction().add(R.id.fl_start, onBoardFragment).commit()
+
+//        binding.btnLogin.setOnClickListener { startActivity(loginIntent) }
+//        binding.btnSignup.setOnClickListener { startActivity(signupIntent) }
     }
 }

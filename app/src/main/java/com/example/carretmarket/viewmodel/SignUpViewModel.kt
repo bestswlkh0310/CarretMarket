@@ -10,14 +10,14 @@ import com.example.carretmarket.network.request.SignUpRequest
 import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.VerifyKeyFetcher
-import com.example.carretmarket.view.activity.StartActivity
+import com.example.carretmarket.view.activity.LoginActivity
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import kotlin.system.exitProcess
 
-class SignupViewModel: ViewModel() {
+class SignUpViewModel: ViewModel() {
     var id: String = ""
     val pw: String = ""
     val email: String = ""
@@ -32,7 +32,7 @@ class SignupViewModel: ViewModel() {
         verifyKey = runBlocking {
             VerifyKeyFetcher.fetch() ?: exitProcess(-1)
         }
-        val startIntent = Intent(context, StartActivity::class.java)
+        val startIntent = Intent(context, LoginActivity::class.java)
         if (pw.isBlank()) return
         val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw)
 

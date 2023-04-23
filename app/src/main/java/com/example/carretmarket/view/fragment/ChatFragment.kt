@@ -8,11 +8,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carretmarket.network.model.Chatting
-import com.example.carretmarket.databinding.FragmentChatBinding
+import com.example.carretmarket.databinding.FragmentChattingBinding
 import com.example.carretmarket.view.adapter.ChatAdapter
 
 class ChatFragment: Fragment() {
-    private val binding: FragmentChatBinding by lazy { FragmentChatBinding.inflate(layoutInflater) }
+    private val binding: FragmentChattingBinding by lazy { FragmentChattingBinding.inflate(layoutInflater) }
     companion object {
         const val TAG: String = "로그"
     }

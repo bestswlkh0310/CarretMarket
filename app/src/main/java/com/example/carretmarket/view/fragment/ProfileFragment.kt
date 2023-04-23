@@ -14,16 +14,6 @@ class ProfileFragment: Fragment() {
         const val TAG: String = "로그"
     }
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        Log.d(TAG, "ProfileFragment - onCreate() called")
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        Log.d(TAG, "ProfileFragment - onAttach() called")
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

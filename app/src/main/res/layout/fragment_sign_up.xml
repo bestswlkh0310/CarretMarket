@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    tools:context=".view.fragment.SignUpFragment">
     <data>
         <variable
             name="signup"
-            type="com.example.carretmarket.viewmodel.SignupViewModel" />
+            type="com.example.carretmarket.viewmodel.SignUpViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.activity.SignupActivity">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv_signup"
@@ -60,4 +59,5 @@
             android:text="회원가입"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>

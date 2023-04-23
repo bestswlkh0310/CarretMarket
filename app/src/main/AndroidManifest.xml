@@ -14,7 +14,7 @@
         android:theme="@style/Theme.CarretMarket"
         tools:targetApi="31">
         <activity
-            android:name=".view.activity.PostActivity"
+            android:name=".view.activity.PostingActivity"
             android:exported="false" />
         <activity
             android:name=".view.activity.MainActivity"
@@ -26,13 +26,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".view.activity.SignupActivity"
-            android:exported="false" />
-        <activity
             android:name=".view.activity.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".view.activity.StartActivity"
             android:exported="false">
             <!--
             <intent-filter>

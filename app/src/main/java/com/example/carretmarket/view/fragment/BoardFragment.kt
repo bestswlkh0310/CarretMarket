@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carretmarket.network.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
-import com.example.carretmarket.databinding.FragmentHomeBinding
-import com.example.carretmarket.view.activity.PostActivity
+import com.example.carretmarket.view.activity.PostingActivity
 import com.example.carretmarket.view.adapter.BoardAdapter
 import com.example.carretmarket.viewmodel.BoardViewModel
 
@@ -35,8 +34,6 @@ class BoardFragment: Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-
         binding = FragmentBoardBinding.inflate(inflater, container, false)
         viewModel = ViewModelProvider(this).get(BoardViewModel::class.java)
 
@@ -79,7 +76,6 @@ class BoardFragment: Fragment() {
                 if (!rv.canScrollVertically(-1)) {
                     Log.d(TAG, "onTop - onScrolled() called")
                     // TODO: clear() 후 new 받아오기
-
                 }
             }
         })
@@ -99,7 +95,7 @@ class BoardFragment: Fragment() {
 
         binding.floatingBtn1.setOnClickListener {
             toggleFab()
-            startActivity(Intent(activity, PostActivity::class.java))
+            startActivity(Intent(activity, PostingActivity::class.java))
         }
 
 
