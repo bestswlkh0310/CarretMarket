@@ -9,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class InputViewModel: ViewModel() {
+class PostingViewModel: ViewModel() {
     fun postContent(board: NewBoardRequest) {
         val call = RetrofitClient.boardAPI.postBoard(board)
         call.enqueue(object: Callback<BaseResponse<BoardResponse>> {

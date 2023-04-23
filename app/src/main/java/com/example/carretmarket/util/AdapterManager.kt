@@ -10,7 +10,7 @@ object AdapterManager {
         items.clear()
     }
 
-    fun <T> addItems(itemList: MutableList<T>, items: MutableList<T>) {
+    fun <T> addItems(itemList: MutableList<T>, items: List<T>) {
         for (item in items) {
             itemList.add(item)
         }

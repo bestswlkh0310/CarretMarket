@@ -8,18 +8,18 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.carretmarket.R
 import com.example.carretmarket.databinding.ActivityPostingBinding
 import com.example.carretmarket.network.request.NewBoardRequest
-import com.example.carretmarket.viewmodel.InputViewModel
+import com.example.carretmarket.viewmodel.PostingViewModel
 
 class PostingActivity : AppCompatActivity() {
     private lateinit var binding: ActivityPostingBinding
-    private lateinit var viewModel: InputViewModel
+    private lateinit var viewModel: PostingViewModel
 
     val TAG: String = "로그"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_posting)
-        viewModel = ViewModelProvider(this)[InputViewModel::class.java]
+        viewModel = ViewModelProvider(this)[PostingViewModel::class.java]
         binding.lifecycleOwner = this
         binding.posting = viewModel
 

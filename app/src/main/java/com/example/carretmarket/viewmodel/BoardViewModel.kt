@@ -9,22 +9,27 @@ import com.example.carretmarket.network.model.Item
 import com.example.carretmarket.network.response.BoardListResponse
 import com.example.carretmarket.network.response.BoardResponse
 import com.example.carretmarket.util.AdapterManager
+import com.example.carretmarket.util.Constant.TAG
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class BoardViewModel: ViewModel() {
-    val TAG: String = "로그"
-    var itemList: MutableList<Board> = arrayListOf()
+    var boardList: MutableList<Board> = arrayListOf()
 
     /**
-     * adapter에 게시글들 넣기
+     * @param boards
+     * add Boards in itemList
      */
-    fun addItems(items: MutableList<Board>) {
-        AdapterManager.addItems(itemList, items)
+    fun addBoards(boards: List<Board>) {
+        AdapterManager.addItems(boardList, boards)
     }
 
-    fun getItem(id: Long? = null): BoardResponse? {
+    /**
+     * @param id
+     * @return board: BoardResponse
+     */
+    fun getBoard(id: Long? = null): BoardResponse? {
         var board: BoardResponse? = null
         val call = RetrofitClient.boardAPI.getBoardById(id)
         call.enqueue(object: Callback<BaseResponse<BoardResponse>> {
@@ -43,7 +48,12 @@ class BoardViewModel: ViewModel() {
         return board
     }
 
-    fun getItems(timestamp: Long? = null): MutableList<Board> {
+    /**
+     * @param timestamp
+     * @return boards: List<Board>
+     */
+    fun getBoards(timestamp: Long? = null): List<Board> {
+        Log.d(TAG, "BoardViewModel - getBoards() called")
         val call = RetrofitClient.boardAPI.getBoards(timestamp)
         val boards: MutableList<Board> = arrayListOf()
         call.enqueue(object: Callback<BaseResponse<List<BoardListResponse>>> {
@@ -73,16 +83,19 @@ class BoardViewModel: ViewModel() {
         return boards
     }
 
-    fun reloadItem() {
-        Log.d(TAG, "BoardViewModel - reloadItem() called")
-        AdapterManager.clearItem(itemList)
-//
+    /**
+     * clear boardList
+     */
+    fun reloadBoard() {
+        Log.d(TAG, "BoardViewModel - reloadBoard() called")
+        AdapterManager.clearItem(boardList)
 //        itemList.removeFirst()
         show()
     }
-    fun show() {
-        for (i in itemList) {
-            Log.d(TAG, "${i.title} - reloadItem() called")
+    private fun show() {
+        Log.d(TAG, "BoardViewModel - show() called")
+        for (i in boardList) {
+            Log.d(TAG, "${i.title} - show()")
         }
     }
 }
