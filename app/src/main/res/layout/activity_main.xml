@@ -12,7 +12,8 @@
         android:layout_height="match_parent">
 
         <!--bottom_navigation_framelayout-->
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
+            android:name="com.example.carretmarket.view.fragment.HomeFragment"
             android:id="@+id/fl_main"
             android:layout_width="match_parent"
             android:layout_height="0dp"

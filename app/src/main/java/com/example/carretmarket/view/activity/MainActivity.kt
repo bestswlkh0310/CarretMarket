@@ -1,9 +1,11 @@
 package com.example.carretmarket.view.activity
 
 import android.os.Bundle
+import android.provider.ContactsContract.Profile
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.commit
 import com.example.carretmarket.R
 import com.example.carretmarket.databinding.ActivityMainBinding
 import com.example.carretmarket.view.fragment.*
@@ -11,7 +13,6 @@ import com.example.carretmarket.view.fragment.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var homeFragment: HomeFragment
     val TAG: String = "로그"
 
     private var backPressedTime : Long = 0
@@ -22,33 +23,39 @@ class MainActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
         initBottomNav()
-        homeFragment = HomeFragment()
-        supportFragmentManager.beginTransaction().add(R.id.fl_main, homeFragment).commit()
-
     }
 
     private fun initBottomNav() {
         binding.bottomNav.setOnNavigationItemSelectedListener {
             when (it.itemId) {
                 R.id.menu_home -> {
-                    val homeFragment = HomeFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, homeFragment).commit()
+                    supportFragmentManager.commit {
+                        replace(R.id.fl_main, HomeFragment())
+                    }
                 }
+
                 R.id.menu_life -> {
-                    val lifeFragment = BoardFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, lifeFragment).commit()
+                    supportFragmentManager.commit {
+                        replace(R.id.fl_main, BoardFragment())
+                    }
                 }
+
                 R.id.menu_map -> {
-                    val mapFragment = MapFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, mapFragment).commit()
+                    supportFragmentManager.commit {
+                        replace(R.id.fl_main, MapFragment())
+                    }
                 }
+
                 R.id.menu_chat -> {
-                    val chatFragment = ChatFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, chatFragment).commit()
+                    supportFragmentManager.commit {
+                        replace(R.id.fl_main, ChatFragment())
+                    }
                 }
+
                 R.id.menu_profile -> {
-                    val profileFragment = ProfileFragment()
-                    supportFragmentManager.beginTransaction().replace(R.id.fl_main, profileFragment).commit()
+                    supportFragmentManager.commit {
+                        replace(R.id.fl_main, ProfileFragment())
+                    }
                 }
             }
             true

@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -20,7 +21,7 @@ import com.example.carretmarket.view.adapter.BoardAdapter
 import com.example.carretmarket.viewmodel.BoardViewModel
 
 class BoardFragment: Fragment() {
-    private lateinit var viewModel: BoardViewModel
+    private val viewModel: BoardViewModel by viewModels()
     private lateinit var binding: FragmentBoardBinding
     private lateinit var adapter: BoardAdapter
     private var isFabOpen = false
@@ -36,7 +37,6 @@ class BoardFragment: Fragment() {
     ): View {
         // binding, viewModel 설정
         binding = FragmentBoardBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[BoardViewModel::class.java]
 
         // 초기화
         initRecyclerView()
@@ -46,29 +46,8 @@ class BoardFragment: Fragment() {
     }
 
     private fun initRecyclerView() {
-        val boardList = arrayListOf(
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-            Board(1234, 12345,"sdaf"),
-        )
+        val boardList = viewModel.getBoards()
         viewModel.addBoards(boardList)
-
         adapter = BoardAdapter(viewModel.boardList)
         // Adapter, LayoutManager 연결
         // rv.adapter = BoardAdapter(itemlist)
@@ -77,16 +56,12 @@ class BoardFragment: Fragment() {
         binding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
+                // recyclerView 아래 닿을 시 게시글 로딩
                 if (!binding.rvBoard.canScrollVertically(1)) {
                     Log.d(TAG, "onBottom - onScrolled() called")
                     val boards = viewModel.getBoards(boardList.last().timestamp)
                     viewModel.addBoards(boards)
-                    // TODO: timestamp 전송 후 값 저장
-                }/*
-                if (!binding.rvBoard.canScrollVertically(-1)) {
-                    Log.d(TAG, "onTop - onScrolled() called")
-                    // TODO: clear() 후 new 받아오기
-                }*/
+                }
             }
         })
 
