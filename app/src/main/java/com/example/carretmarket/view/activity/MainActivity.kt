@@ -13,7 +13,6 @@ import com.example.carretmarket.view.fragment.*
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    val TAG: String = "로그"
 
     private var backPressedTime : Long = 0
     private var backPressTime : Long = 2500

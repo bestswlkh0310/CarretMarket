@@ -46,13 +46,26 @@ class BoardFragment: Fragment() {
     }
 
     private fun initRecyclerView() {
-        val boardList = viewModel.getBoards()
+//        val boardList = viewModel.getBoards()
+        val boardList = arrayListOf(
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "123"),
+            Board(1,12, "12313123123"),
+            Board(1,12, "123"),
+            Board(1,12, "123123123"),
+            Board(1,12, "123"),
+        )
         viewModel.addBoards(boardList)
         adapter = BoardAdapter(viewModel.boardList)
-        // Adapter, LayoutManager 연결
-        // rv.adapter = BoardAdapter(itemlist)
+
         binding.rvBoard.adapter = adapter
         binding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
+        // scroll event
         binding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)

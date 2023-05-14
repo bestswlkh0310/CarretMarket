@@ -23,14 +23,13 @@ class HomeFragment: Fragment() {
     private lateinit var adapter : ItemAdapter
     private var isFabOpen = false
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        initTopBar()
+        initToolBar()
         initFloatingBar()
         initRecyclerView()
 
@@ -51,7 +50,7 @@ class HomeFragment: Fragment() {
     }
 
 
-    private fun initTopBar() {
+    private fun initToolBar() {
         // 동네 선택
         binding.tvGujida.setOnClickListener {
             Log.d(TAG, "MainActivity - onCreate() called")
@@ -59,24 +58,14 @@ class HomeFragment: Fragment() {
     }
 
     private fun initFloatingBar() {
-        // main
-        binding.floatingBtn2.setOnClickListener {
-            onClickFloatingBar()
-        }
+        binding.floatingBtn2.setOnClickListener { onClickFloatingBar() }
 
-        // posting
-        binding.floatingBtn1.setOnClickListener {
-            onClickFloatingBar()
-            // TODO: InputActivity -> 상품 올리기 Activity
-            //startActivity(Intent(activity, InputActivity::class.java))
-        }
+        binding.floatingBtn1.setOnClickListener { onClickFloatingBar() }
     }
 
     private fun onClickFloatingBar() {
-        Log.d(TAG, "MainActivity - toggleFab() called")
         if (isFabOpen) {
             val anim = ObjectAnimator.ofFloat(binding.floatingBtn1, "translationY", 0f).apply { start() }
-            // 활성화 비활성화
             anim.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(anim)

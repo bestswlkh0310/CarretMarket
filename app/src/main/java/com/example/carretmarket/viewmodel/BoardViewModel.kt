@@ -41,9 +41,7 @@ class BoardViewModel: ViewModel() {
                     board = response.body()!!.data
                 }
             }
-            override fun onFailure(call: Call<BaseResponse<BoardResponse>>, t: Throwable) {
-
-            }
+            override fun onFailure(call: Call<BaseResponse<BoardResponse>>, t: Throwable) {}
         })
         return board
     }
