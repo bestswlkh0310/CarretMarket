@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".features.board.BoardFragment">
+    tools:context=".features.onboard.BoardFragment">
     <data>
         <variable
-            name="board"
-            type="com.example.carretmarket.features.board.BoardViewModel" />
+            name="vm"
+            type="com.example.carretmarket.features.onboard.BoardViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

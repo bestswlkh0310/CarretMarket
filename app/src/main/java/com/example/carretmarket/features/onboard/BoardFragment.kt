@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board
+package com.example.carretmarket.features.onboard
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -16,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.carretmarket.R
 import com.example.carretmarket.network.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
-import com.example.carretmarket.features.board.post.PostingFragment
+import com.example.carretmarket.features.onboard.post.PostingFragment
 import com.example.carretmarket.features.home.HomeFragment
 
 class BoardFragment: Fragment() {

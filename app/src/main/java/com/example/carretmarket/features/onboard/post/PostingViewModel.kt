@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board.post
+package com.example.carretmarket.features.onboard.post
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData

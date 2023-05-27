@@ -20,7 +20,6 @@ object RetrofitClient {
 
     private val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor)
 
-
     var server: Retrofit = Retrofit.Builder()
         .baseUrl(url)
         .addConverterFactory(GsonConverterFactory.create())

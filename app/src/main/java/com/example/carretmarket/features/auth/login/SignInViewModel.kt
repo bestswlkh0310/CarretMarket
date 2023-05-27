@@ -12,7 +12,7 @@ import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.Session
 import com.example.carretmarket.util.VerifyKeyFetcher
-import com.example.carretmarket.features.onMain.MainActivity
+import com.example.carretmarket.features.onmain.MainActivity
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback

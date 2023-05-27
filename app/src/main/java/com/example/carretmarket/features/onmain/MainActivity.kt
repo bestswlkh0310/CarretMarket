@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.onMain
+package com.example.carretmarket.features.onmain
 
 import android.os.Bundle
 import android.widget.Toast
@@ -6,18 +6,18 @@ import androidx.activity.viewModels
 import androidx.fragment.app.commit
 import com.example.carretmarket.R
 import com.example.carretmarket.base.BaseActivity
-import com.example.carretmarket.databinding.ActivityOnmainBinding
-import com.example.carretmarket.features.board.BoardFragment
+import com.example.carretmarket.databinding.ActivityOnMainBinding
+import com.example.carretmarket.features.onboard.BoardFragment
 import com.example.carretmarket.features.chat.ChatFragment
 import com.example.carretmarket.features.home.HomeFragment
 import com.example.carretmarket.features.map.MapFragment
 import com.example.carretmarket.features.profile.ProfileFragment
 
 
-class MainActivity : BaseActivity<ActivityOnmainBinding, MainViewModel>() {
+class MainActivity : BaseActivity<ActivityOnMainBinding, MainViewModel>() {
     override val viewModel by viewModels<MainViewModel>()
     override val TAG: String = MainActivity::class.java.simpleName
-    override val layoutRes = R.layout.activity_onmain
+    override val layoutRes = R.layout.activity_on_main
 
     private var backPressedTime : Long = 0
     private var backPressTime : Long = 2500

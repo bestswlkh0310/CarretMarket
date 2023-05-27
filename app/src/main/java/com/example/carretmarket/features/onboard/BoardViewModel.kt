@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board
+package com.example.carretmarket.features.onboard
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
