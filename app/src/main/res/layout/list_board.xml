@@ -5,7 +5,7 @@
     <data>
         <variable
             name="list_life"
-            type="com.example.carretmarket.view.adapter.BoardAdapter" />
+            type="com.example.carretmarket.features.board.BoardAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

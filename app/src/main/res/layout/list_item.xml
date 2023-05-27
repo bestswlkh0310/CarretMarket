@@ -5,7 +5,7 @@
     <data>
         <variable
             name="list_item"
-            type="com.example.carretmarket.view.adapter.ItemAdapter" />
+            type="com.example.carretmarket.features.home.ItemAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -12,7 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitClient {
-    private const val url = "https://jombi.dev:2096/"
+    private const val url = "https://localhost:8090/"
     private val loggingInterceptor = HttpLoggingInterceptor {
             message ->
         Log.d(TAG, "$message - RetrofitClient() called")

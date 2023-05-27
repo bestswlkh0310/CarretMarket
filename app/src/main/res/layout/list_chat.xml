@@ -5,7 +5,7 @@
     <data>
         <variable
             name="list_chat"
-            type="com.example.carretmarket.view.adapter.ChatAdapter" />
+            type="com.example.carretmarket.features.chat.ChatAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

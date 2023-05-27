@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.MapFragment">
+    tools:context=".features.map.MapFragment">
     <data>
         <variable
             name="map"
-            type="com.example.carretmarket.view.fragment.MapFragment" />
+            type="com.example.carretmarket.features.map.MapFragment" />
     </data>
     <ScrollView
         android:layout_width="match_parent"

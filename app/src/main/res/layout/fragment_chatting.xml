@@ -2,11 +2,11 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.fragment.ChatFragment">
+    tools:context=".features.chat.ChatFragment">
     <data>
         <variable
             name="chat"
-            type="com.example.carretmarket.view.fragment.ChatFragment" />
+            type="com.example.carretmarket.features.chat.ChatFragment" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
