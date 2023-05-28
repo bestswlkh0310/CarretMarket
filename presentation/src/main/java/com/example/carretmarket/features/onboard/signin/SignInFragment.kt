@@ -25,16 +25,5 @@ class SignInFragment : BaseFragment<FragmentSignInBinding, SignInViewModel>() {
         }
     }
 
-    override fun observerViewModel() {
-        initSignIn()
-    }
-
-    private fun initSignIn() {
-        mBinding.btnLogin.setOnClickListener {
-            viewModel.onClickLogin(requireActivity().applicationContext,
-                mBinding.etInpId.text.toString(),
-                mBinding.etInpPw.text.toString()
-            )
-        }
-    }
+    override fun observerViewModel() {}
 }

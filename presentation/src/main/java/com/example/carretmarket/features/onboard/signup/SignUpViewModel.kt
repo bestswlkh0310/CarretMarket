@@ -16,7 +16,7 @@ import retrofit2.Response
 class SignUpViewModel: BaseViewModel() {
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
-    private val email = MutableLiveData<String>()
+    val email = MutableLiveData<String>()
 
     private lateinit var verifyKey: VerifyKeyResponse
 
