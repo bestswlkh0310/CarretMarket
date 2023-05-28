@@ -13,4 +13,6 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "CarretMarket"
-include ':app'
+include ':presentation'
+include ':domain'
+include ':data'
