@@ -47,6 +47,12 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         mBinding.lifecycleOwner = this
     }
 
+    protected fun bindingViewEvent(action: (event: Any) -> Unit) {
+        viewModel.viewEvent.observe(this) { event ->
+            action.invoke(event)
+        }
+    }
+
 
     @LayoutRes
     private fun layoutRes(): Int {

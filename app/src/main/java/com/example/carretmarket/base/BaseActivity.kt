@@ -32,6 +32,15 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         mBinding.setVariable(BR.vm, mViewModel)
         mBinding.lifecycleOwner = this
     }
+
+
+    protected fun bindingViewEvent(action: (event: Any) -> Unit) {
+        viewModel.viewEvent.observe(this) { event ->
+            action.invoke(event)
+        }
+    }
+
+
     @LayoutRes
     private fun layoutRes(): Int {
         val split = (

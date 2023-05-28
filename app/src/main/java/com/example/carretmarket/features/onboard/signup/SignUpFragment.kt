@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.auth.join
+package com.example.carretmarket.features.onboard.signup
 
 import androidx.fragment.app.viewModels
 import com.example.carretmarket.base.BaseFragment

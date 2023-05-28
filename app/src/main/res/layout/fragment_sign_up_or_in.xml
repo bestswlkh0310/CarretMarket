@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".features.auth.OnBoardFragment">
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
     <data>
         <variable
             name="vm"
-            type="com.example.carretmarket.features.auth.OnBoardViewModel" />
+            type="com.example.carretmarket.features.onboard.signuporin.SignUpOrInViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
             android:id="@+id/tv_login"
             android:layout_width="wrap_content"
@@ -30,6 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_login"
             android:text="로그인"
+            android:onClick="@{() -> vm.onClickSignIn()}"
             />
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_signup"
@@ -38,6 +38,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btn_login"
+            android:onClick="@{() -> vm.onClickSignUp()}"
             android:text="회원가입"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

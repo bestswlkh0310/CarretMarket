@@ -1,9 +1,8 @@
-package com.example.carretmarket.features.auth.join
+package com.example.carretmarket.features.onboard.signup
 
 import android.content.Context
 import android.content.Intent
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
@@ -11,7 +10,7 @@ import com.example.carretmarket.network.request.SignUpRequest
 import com.example.carretmarket.network.response.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.VerifyKeyFetcher
-import com.example.carretmarket.features.auth.OnBoardActivity
+import com.example.carretmarket.features.onboard.OnBoardActivity
 import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback

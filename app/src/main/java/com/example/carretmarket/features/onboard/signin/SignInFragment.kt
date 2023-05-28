@@ -1,6 +1,5 @@
-package com.example.carretmarket.features.auth.login
+package com.example.carretmarket.features.onboard.signin
 
-import android.os.Bundle
 import androidx.fragment.app.viewModels
 import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.databinding.FragmentSignInBinding

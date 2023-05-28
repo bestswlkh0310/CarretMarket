@@ -1,7 +1,8 @@
-package com.example.carretmarket.features.auth
+package com.example.carretmarket.features.onboard
 
 import com.example.carretmarket.base.BaseViewModel
 
 class OnBoardViewModel: BaseViewModel() {
-    val ta = "das"
+
+
 }
