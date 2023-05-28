@@ -2,6 +2,7 @@ package com.example.carretmarket.features.home
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
 import com.example.carretmarket.network.model.Item
@@ -11,5 +12,5 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel: BaseViewModel() {
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
         <variable
-            name="list_item"
+            name="vm"
             type="com.example.carretmarket.features.home.ItemAdapter" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

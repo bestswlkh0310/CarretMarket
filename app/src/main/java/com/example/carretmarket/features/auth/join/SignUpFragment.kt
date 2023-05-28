@@ -1,34 +1,17 @@
 package com.example.carretmarket.features.auth.join
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.databinding.FragmentSignUpBinding
 
-class SignUpFragment : Fragment() {
-    private lateinit var binding: FragmentSignUpBinding
-    private lateinit var viewModel: SignUpViewModel
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentSignUpBinding.inflate(inflater, container, false)
-        viewModel = ViewModelProvider(this)[SignUpViewModel::class.java]
-        binding.lifecycleOwner = this
-        binding.signup = viewModel
-
+class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
+    override val viewModel: SignUpViewModel by viewModels()
+    override fun observerViewModel() {
         initSignUp()
-
-
-        return binding.root
     }
 
     private fun initSignUp() {
-        binding.btnSignup.setOnClickListener {
+        mBinding.btnSignup.setOnClickListener {
             viewModel.onSignupClick(requireContext().applicationContext)
         }
     }

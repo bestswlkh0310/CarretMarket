@@ -5,7 +5,7 @@
     tools:context=".features.auth.login.SignInFragment">
     <data>
         <variable
-            name="signin"
+            name="vm"
             type="com.example.carretmarket.features.auth.login.SignInViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout

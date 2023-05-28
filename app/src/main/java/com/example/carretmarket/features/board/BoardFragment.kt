@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.onboard
+package com.example.carretmarket.features.board
 
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
@@ -14,36 +14,23 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carretmarket.R
+import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.network.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
-import com.example.carretmarket.features.onboard.post.PostingFragment
+import com.example.carretmarket.features.board.post.PostingFragment
 import com.example.carretmarket.features.home.HomeFragment
+import com.example.carretmarket.util.Constant.TAG
 
-class BoardFragment: Fragment() {
-    private val viewModel: BoardViewModel by viewModels()
-    private lateinit var binding: FragmentBoardBinding
+class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
+    override val viewModel: BoardViewModel by viewModels()
+
     private lateinit var adapter: BoardAdapter
     private var isFabOpen = false
 
-    companion object {
-        const val TAG: String = "로그"
-    }
-
-    override fun onCreateView (
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        // binding, viewModel 설정
-        binding = FragmentBoardBinding.inflate(inflater, container, false)
-
-        // 초기화
+    override fun observerViewModel() {
         initRecyclerView()
         initFloatingBar()
-
-        return binding.root
     }
-
     private fun initRecyclerView() {
 //        val boardList = viewModel.getBoards()
         val boardList = arrayListOf(
@@ -62,14 +49,14 @@ class BoardFragment: Fragment() {
         viewModel.addBoards(boardList)
         adapter = BoardAdapter(viewModel.boardList)
 
-        binding.rvBoard.adapter = adapter
-        binding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
+        mBinding.rvBoard.adapter = adapter
+        mBinding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
         // scroll event
-        binding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {
+        mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 // recyclerView 아래 닿을 시 게시글 로딩
-                if (!binding.rvBoard.canScrollVertically(1)) {
+                if (!mBinding.rvBoard.canScrollVertically(1)) {
                     Log.d(TAG, "onBottom - onScrolled() called")
                     val boards = viewModel.getBoards(boardList.last().timestamp)
                     viewModel.addBoards(boards)
@@ -80,19 +67,19 @@ class BoardFragment: Fragment() {
         // recyclerView 를 가로로 만들기
         // rv.layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
 
-        binding.swr.setOnRefreshListener {
+        mBinding.swr.setOnRefreshListener {
             viewModel.reloadBoard()
             adapter.notifyItemRangeRemoved(0, boardList.size)
-            binding.swr.isRefreshing = false
+            mBinding.swr.isRefreshing = false
         }
     }
 
     private fun initFloatingBar() {
-        binding.floatingBtn2.setOnClickListener {
+        mBinding.floatingBtn2.setOnClickListener {
             onClickFloatingBar()
         }
 
-        binding.floatingBtn1.setOnClickListener {
+        mBinding.floatingBtn1.setOnClickListener {
             onClickFloatingBar()
             activity?.supportFragmentManager?.commit {
                 replace(R.id.fl_main, PostingFragment())
@@ -101,18 +88,18 @@ class BoardFragment: Fragment() {
     }
 
     private fun onClickFloatingBar() {
-        Log.d(HomeFragment.TAG, "MainActivity - toggleFab() called")
+        Log.d(TAG, "MainActivity - toggleFab() called")
         if (isFabOpen) {
-            val anim = ObjectAnimator.ofFloat(binding.floatingBtn1, "translationY", 0f).apply { start() }
+            val anim = ObjectAnimator.ofFloat(mBinding.floatingBtn1, "translationY", 0f).apply { start() }
             anim.addListener(object : AnimatorListenerAdapter() {
                 override fun onAnimationEnd(animation: Animator) {
                     super.onAnimationEnd(anim)
-                    binding.floatingBtn1.visibility = View.INVISIBLE
+                    mBinding.floatingBtn1.visibility = View.INVISIBLE
                 }
             })
         } else {
-            ObjectAnimator.ofFloat(binding.floatingBtn1, "translationY", -150f).apply { start() }
-            binding.floatingBtn1.visibility = View.VISIBLE
+            ObjectAnimator.ofFloat(mBinding.floatingBtn1, "translationY", -150f).apply { start() }
+            mBinding.floatingBtn1.visibility = View.VISIBLE
         }
         isFabOpen = !isFabOpen
     }

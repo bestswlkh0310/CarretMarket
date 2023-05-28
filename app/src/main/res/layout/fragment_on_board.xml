@@ -5,8 +5,8 @@
     tools:context=".features.auth.OnBoardFragment">
     <data>
         <variable
-            name="onboard"
-            type="com.example.carretmarket.features.auth.OnBoardFragment" />
+            name="vm"
+            type="com.example.carretmarket.features.auth.OnBoardViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

@@ -4,8 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable
-            name="list_life"
-            type="com.example.carretmarket.features.onboard.BoardAdapter" />
+            name="vm"
+            type="com.example.carretmarket.features.board.BoardViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

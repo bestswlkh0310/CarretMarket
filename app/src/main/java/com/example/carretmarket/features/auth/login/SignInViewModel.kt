@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
 import com.example.carretmarket.network.request.SignInRequest
@@ -19,7 +20,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import kotlin.system.exitProcess
 
-class SignInViewModel: ViewModel() {
+class SignInViewModel: BaseViewModel() {
     val TAG: String = "로그"
 
     private lateinit var verifyKey: VerifyKeyResponse

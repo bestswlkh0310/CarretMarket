@@ -7,9 +7,11 @@ import com.example.carretmarket.base.BaseActivity
 import com.example.carretmarket.databinding.ActivityOnboardBinding
 
 class OnBoardActivity : BaseActivity<ActivityOnboardBinding, OnBoardViewModel>() {
-    override val viewModel by viewModels<OnBoardViewModel>()
-    override val TAG: String = OnBoardActivity::class.java.simpleName
-    override val layoutRes = R.layout.activity_onboard
+    override val viewModel: OnBoardViewModel by viewModels()
+    override fun observerViewModel() {
+
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

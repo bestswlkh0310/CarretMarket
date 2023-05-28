@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.onboard.post
+package com.example.carretmarket.features.board.post
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -13,14 +13,14 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PostingViewModel: BaseViewModel() {
-    val title = MutableLiveData("asd")
+    val title = MutableLiveData("")
     val content = MutableLiveData("")
     fun postContent() {
-        Log.d(TAG, "PostingViewModel - postContent() called")
         val board = NewBoardRequest(
             title.value!!,
             content.value!!
         )
+        Log.d("로그", "${board} - postContent() called")
         val call = RetrofitClient.boardAPI.postBoard(board)
         call.enqueue(object: Callback<BaseResponse<BoardResponse>> {
             override fun onResponse(call: Call<BaseResponse<BoardResponse>>, response: Response<BaseResponse<BoardResponse>>) {

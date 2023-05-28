@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.onboard
+package com.example.carretmarket.features.board
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

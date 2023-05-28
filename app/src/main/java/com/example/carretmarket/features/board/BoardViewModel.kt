@@ -1,7 +1,8 @@
-package com.example.carretmarket.features.onboard
+package com.example.carretmarket.features.board
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
 import com.example.carretmarket.network.model.Board
@@ -13,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class BoardViewModel: ViewModel() {
+class BoardViewModel: BaseViewModel() {
     var boardList: MutableList<Board> = arrayListOf()
 
     /**

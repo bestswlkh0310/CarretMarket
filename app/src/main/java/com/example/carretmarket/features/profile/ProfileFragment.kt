@@ -6,19 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.carretmarket.R
+import com.example.carretmarket.base.BaseFragment
+import com.example.carretmarket.databinding.FragmentProfileBinding
 
-class ProfileFragment: Fragment() {
-    companion object {
-        const val TAG: String = "로그"
-    }
+class ProfileFragment : BaseFragment<FragmentProfileBinding, ProfileViewModel>() {
+    override val viewModel: ProfileViewModel by viewModels()
+    override fun observerViewModel() {
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        Log.d(TAG, "ProfileFragment - onCreateView() called")
-        return inflater.inflate(R.layout.fragment_profile, container, false)
     }
 }

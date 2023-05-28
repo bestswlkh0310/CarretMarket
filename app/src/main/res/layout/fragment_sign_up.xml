@@ -5,7 +5,7 @@
     tools:context=".features.auth.join.SignUpFragment">
     <data>
         <variable
-            name="signup"
+            name="vm"
             type="com.example.carretmarket.features.auth.join.SignUpViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
