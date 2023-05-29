@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.carretmarket.BR
 import com.example.carretmarket.R
+import com.example.carretmarket.util.Constant.TAG
 import java.lang.reflect.ParameterizedType
 import java.util.Locale
 import java.util.Objects
@@ -20,27 +21,38 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     protected lateinit var mViewModel: VM
 
     protected abstract val viewModel: VM
+
+    private var isLoad = false
+
+    protected var savedInstanceState: Bundle? = null
+
     protected abstract fun observerViewModel()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mBinding = DataBindingUtil.inflate(
+        mBinding = DataBindingUtil.inflate (
             inflater,
             layoutRes(),
             container, false
         )
+        observerViewModel()
+
         return mBinding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        this.savedInstanceState = savedInstanceState
         performDataBinding()
-        observerViewModel()
+        Log.d(TAG, "실행 - onViewCreated() called")
     }
-
     private fun performDataBinding() {
         mViewModel = if (::mViewModel.isInitialized) mViewModel else viewModel
         mBinding.setVariable(BR.vm, mViewModel)
@@ -48,11 +60,19 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     protected fun bindingViewEvent(action: (event: Any) -> Unit) {
-        viewModel.viewEvent.observe(this) { event ->
-            action.invoke(event)
+        if (isLoad == false) {
+            isLoad = true
+            viewModel.viewEvent.observe(this) { event ->
+                action.invoke(event)
+            }
         }
+
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::mBinding.isInitialized) mBinding.unbind()
+    }
 
     @LayoutRes
     private fun layoutRes(): Int {

@@ -2,36 +2,61 @@ package com.example.carretmarket.features.onboard.signup
 
 import android.os.Bundle
 import android.util.Log
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.addCallback
-import androidx.fragment.app.commit
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import com.example.carretmarket.R
+import androidx.navigation.fragment.findNavController
 import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.databinding.FragmentSignUpBinding
-import com.example.carretmarket.features.onboard.signuporin.SignUpOrInFragment
-import com.example.carretmarket.util.Constant
+import com.example.carretmarket.util.Constant.TAG
 
 class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
 
-    lateinit var callback: OnBackPressedCallback
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        callback = requireActivity().onBackPressedDispatcher.addCallback {
-            requireActivity().supportFragmentManager.commit {
-                setCustomAnimations(R.anim.to_left, R.anim.from_left)
-                replace(R.id.fl_on_board, SignUpOrInFragment())
+    override fun observerViewModel() {
+        bindingViewEvent { event ->
+            when (event) {
             }
         }
     }
 
-    override fun onStop() {
-        super.onStop()
-        callback.remove()
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        Log.d(TAG, "SignUpFragment - onCreateView() called")
+        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
-    override fun observerViewModel() {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        Log.d(TAG, "SignUpFragment - onViewCreated() called")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "SignUpFragment - onStart() called")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "SignUpFragment - onPause() called")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "SignUpFragment - onStop() called")
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        Log.d(TAG, "SignUpOrInFragment - onDestroyView() called")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "SignUpFragment - onDestroy() called")
     }
 }

@@ -1,7 +1,6 @@
 package com.example.carretmarket.features.board.post
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.addCallback
 import androidx.fragment.app.commit
@@ -19,7 +18,7 @@ class PostingFragment : BaseFragment<FragmentPostingBinding, PostingViewModel>()
         super.onCreate(savedInstanceState)
         callback = requireActivity().onBackPressedDispatcher.addCallback {
             requireActivity().supportFragmentManager.commit {
-                replace(R.id.fl_main, BoardFragment())
+                replace(R.id.nav_host_on_main, BoardFragment())
             }
         }
     }

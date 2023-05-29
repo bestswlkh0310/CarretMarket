@@ -51,4 +51,7 @@ class SignUpViewModel: BaseViewModel() {
             }
         })
     }
+
+    companion object {
+    }
 }

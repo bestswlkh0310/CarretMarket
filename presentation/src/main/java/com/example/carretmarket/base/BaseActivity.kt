@@ -19,7 +19,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
 
     protected abstract fun observerViewModel()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         performDataBinding()
@@ -38,6 +37,11 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         viewModel.viewEvent.observe(this) { event ->
             action.invoke(event)
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if (::mBinding.isInitialized) mBinding.unbind()
     }
 
 

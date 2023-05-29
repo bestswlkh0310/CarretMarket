@@ -5,12 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 open class BaseViewModel: ViewModel() {
-    protected val _viewEvent = MutableLiveData<Any>()
+    private val _viewEvent = MutableLiveData<Any>()
     val viewEvent: LiveData<Any>
         get() = _viewEvent
 
     fun viewEvent(content: Any) {
         _viewEvent.value = content
     }
-
 }
