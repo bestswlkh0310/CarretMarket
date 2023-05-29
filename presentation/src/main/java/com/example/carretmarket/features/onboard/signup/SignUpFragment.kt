@@ -19,6 +19,7 @@ class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
         requireActivity().onBackPressedDispatcher.addCallback {
             Log.d(Constant.TAG, "SignUpFragment - onCreate() called")
             requireActivity().supportFragmentManager.commit {
+                setCustomAnimations(R.anim.to_left, R.anim.from_left)
                 replace(R.id.fl_on_board, SignUpOrInFragment())
             }
         }

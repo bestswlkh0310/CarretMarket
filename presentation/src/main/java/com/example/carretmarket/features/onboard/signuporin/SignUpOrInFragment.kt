@@ -14,9 +14,13 @@ class SignUpOrInFragment : BaseFragment<FragmentSignUpOrInBinding, SignUpOrInVie
         bindingViewEvent { event ->
             when (event) {
                 SignUpOrInViewModel.EVENT_ON_CLICK_SIGN_IN -> requireActivity().supportFragmentManager.commit {
+                    setCustomAnimations(R.anim.to_right, R.anim.from_right)
+
                     replace(R.id.fl_on_board, SignInFragment())
                 }
                 SignUpOrInViewModel.EVENT_ON_CLICK_SIGN_UP -> requireActivity().supportFragmentManager.commit {
+                    setCustomAnimations(R.anim.to_right, R.anim.from_right)
+
                     replace(R.id.fl_on_board, SignUpFragment())
                 }
             }

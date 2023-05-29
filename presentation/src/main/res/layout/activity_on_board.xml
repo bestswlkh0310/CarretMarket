@@ -10,11 +10,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <androidx.fragment.app.FragmentContainerView
+        <FrameLayout
             android:id="@+id/fl_on_board"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-        </androidx.fragment.app.FragmentContainerView>
+            android:layout_height="match_parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

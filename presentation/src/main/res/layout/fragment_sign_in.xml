@@ -13,44 +13,73 @@
         android:layout_height="match_parent"
         android:background="@color/white">
 
-        <TextView
-            android:id="@+id/tv_login"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="로그인"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:textSize="30sp"/>
-        <EditText
-            android:id="@+id/et_inp_id"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tv_login"
-            android:inputType="text"
-            android:hint="아이디를 입력하세요"
-            android:text="@={vm.id}"/>
-        <EditText
-            android:id="@+id/et_inp_pw"
-            android:layout_width="300dp"
-            android:layout_height="48dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_inp_id"
-            android:inputType="text"
-            android:hint="비밀번호를 입력하세요"
-            android:text="@={vm.pw}"/>
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/btn_login"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tv_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:fontFamily="@font/suite_boldextra"
+                android:text="로그인해라"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@id/et_inp_id"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/et_inp_id"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_text"
+                android:hint="아이디를 입력하세요"
+                android:inputType="text"
+                android:text="@={vm.id}"
+                android:layout_marginVertical="4dp"
+                android:padding="12dp"
+                app:layout_constraintBottom_toTopOf="@id/et_inp_pw"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_login" />
+
+            <EditText
+                android:id="@+id/et_inp_pw"
+                android:layout_width="300dp"
+                android:layout_height="48dp"
+                android:background="@drawable/edit_text"
+                android:hint="비밀번호를 입력하세요"
+                android:inputType="text"
+                android:text="@={vm.pw}"
+                android:layout_marginVertical="4dp"
+                android:padding="12dp"
+                app:layout_constraintBottom_toTopOf="@id/btn_login"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/et_inp_id" />
+        </LinearLayout>
+
+
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn_login"
-            android:layout_width="wrap_content"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/et_inp_pw"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:fontFamily="@font/suite_boldextra"
+            android:textSize="20sp"
+            android:background="@drawable/button"
             android:text="로그인"
+            android:onClick="@{() -> vm.onClickLogin()}"
+            android:stateListAnimator="@null"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
