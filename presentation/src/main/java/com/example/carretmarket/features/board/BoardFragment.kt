@@ -3,29 +3,39 @@ package com.example.carretmarket.features.board
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.view.isInvisible
 import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carretmarket.R
+import com.example.carretmarket.base.BaseActivity
 import com.example.carretmarket.base.BaseFragment
+import com.example.carretmarket.databinding.ActivityOnMainBinding
 import com.example.carretmarket.network.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
 import com.example.carretmarket.features.board.post.PostingFragment
-import com.example.carretmarket.features.home.HomeFragment
+import com.example.carretmarket.features.onmain.MainActivity
+import com.example.carretmarket.features.onmain.MainViewModel
 import com.example.carretmarket.util.Constant.TAG
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     override val viewModel: BoardViewModel by viewModels()
 
     private lateinit var adapter: BoardAdapter
     private var isFabOpen = false
+    override fun onResume() {
+        super.onResume()
+        val bottomNavigationView: BottomNavigationView = (requireActivity().findViewById(R.id.bottom_nav)!!)
+        bottomNavigationView.visibility = View.VISIBLE
+        Log.d(TAG, "BoardFragment - onResume() called")
+    }
 
     override fun observerViewModel() {
         initRecyclerView()
@@ -81,6 +91,8 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
 
         mBinding.floatingBtn1.setOnClickListener {
             onClickFloatingBar()
+            val bottomNavigationView: BottomNavigationView = (requireActivity().findViewById(R.id.bottom_nav)!!)
+            bottomNavigationView.visibility = View.GONE
             activity?.supportFragmentManager?.commit {
                 replace(R.id.fl_main, PostingFragment())
             }

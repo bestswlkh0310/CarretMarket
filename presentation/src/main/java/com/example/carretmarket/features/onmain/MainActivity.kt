@@ -1,6 +1,8 @@
 package com.example.carretmarket.features.onmain
 
+import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.addCallback
 import androidx.activity.viewModels
 import androidx.fragment.app.commit
 import com.example.carretmarket.R
@@ -15,7 +17,6 @@ import com.example.carretmarket.features.profile.ProfileFragment
 
 class MainActivity : BaseActivity<ActivityOnMainBinding, MainViewModel>() {
     override val viewModel by viewModels<MainViewModel>()
-
 
     private var backPressedTime : Long = 0
     private var backPressTime : Long = 2500
@@ -59,15 +60,5 @@ class MainActivity : BaseActivity<ActivityOnMainBinding, MainViewModel>() {
             }
             true
         }
-    }
-
-    override fun onBackPressed() {
-        //2.5초이내에 한 번 더 뒤로가기 클릭 시
-        if (System.currentTimeMillis() - backPressedTime < backPressTime) {
-            super.onBackPressed()
-            return
-        }
-        Toast.makeText(this, "한번 더 클릭 시 홈으로 이동됩니다.", Toast.LENGTH_SHORT).show()
-        backPressedTime = System.currentTimeMillis()
     }
 }
