@@ -17,6 +17,10 @@ import retrofit2.Response
 class BoardViewModel: BaseViewModel() {
     var boardList: MutableList<Board> = arrayListOf()
 
+    fun onClickPost() {
+        viewEvent(EVENT_ON_POST)
+    }
+
     /**
      * @param boards
      * add Boards in itemList
@@ -95,5 +99,9 @@ class BoardViewModel: BaseViewModel() {
         for (i in boardList) {
             Log.d(TAG, "${i.title} - show()")
         }
+    }
+
+    companion object {
+        const val EVENT_ON_POST = 0
     }
 }

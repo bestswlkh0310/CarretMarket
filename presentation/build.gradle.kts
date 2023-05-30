@@ -43,7 +43,7 @@ dependencies {
     implementation("androidx.navigation:navigation-fragment-ktx:$nav_version")
     implementation("androidx.navigation:navigation-ui-ktx:$nav_version")
 
-    kapt ("com.android.databinding:compiler:3.1.4")
+//    kapt ("com.android.databinding:compiler:3.1.4")
 
     kapt("com.google.dagger:hilt-android-compiler:2.44.2")
     implementation("com.google.dagger:hilt-android:2.44.2")

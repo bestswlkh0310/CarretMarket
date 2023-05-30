@@ -15,7 +15,7 @@ object RetrofitClient {
     private const val url = "https://localhost:8090/"
     private val loggingInterceptor = HttpLoggingInterceptor {
             message ->
-        Log.d(TAG, "$message - RetrofitClient() called")
+//        Log.d(TAG, "$message - RetrofitClient() called")
     }.setLevel(Level.BODY)
 
     private val client = OkHttpClient.Builder().addInterceptor(loggingInterceptor)

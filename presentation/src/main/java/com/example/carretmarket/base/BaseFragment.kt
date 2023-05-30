@@ -11,6 +11,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.example.carretmarket.BR
 import com.example.carretmarket.R
+import com.example.carretmarket.features.onmain.MainActivity
 import com.example.carretmarket.util.Constant.TAG
 import java.lang.reflect.ParameterizedType
 import java.util.Locale
@@ -28,10 +29,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
 
     protected abstract fun observerViewModel()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,7 +39,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
             layoutRes(),
             container, false
         )
-        observerViewModel()
 
         return mBinding.root
     }
@@ -50,8 +46,9 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.savedInstanceState = savedInstanceState
+        viewModel.viewEvent(-1)
         performDataBinding()
-        Log.d(TAG, "실행 - onViewCreated() called")
+        observerViewModel()
     }
     private fun performDataBinding() {
         mViewModel = if (::mViewModel.isInitialized) mViewModel else viewModel

@@ -26,5 +26,42 @@
         android:name="com.example.carretmarket.features.onboard.signup.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_signUpOrInFragment"
+            app:destination="@id/signUpOrInFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.carretmarket.features.board.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_boardFragment_to_postFragment"
+            app:destination="@id/postFragment"/>
+    </fragment>
+    <fragment
+        android:id="@+id/mapFragment"
+        android:name="com.example.carretmarket.features.map.MapFragment"
+        android:label="fragment_map"
+        tools:layout="@layout/fragment_map" />
+    <fragment
+        android:id="@+id/chatFragment"
+        android:name="com.example.carretmarket.features.chat.ChatFragment"
+        android:label="fragment_chatting"
+        tools:layout="@layout/fragment_chatting" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.carretmarket.features.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/postFragment"
+        android:name="com.example.carretmarket.features.board.post.PostingFragment"
+        android:label="fragment_posting"
+        tools:layout="@layout/fragment_posting" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.carretmarket.features.profile.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>
