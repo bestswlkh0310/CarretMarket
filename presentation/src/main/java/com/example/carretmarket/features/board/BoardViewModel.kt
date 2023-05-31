@@ -1,7 +1,6 @@
 package com.example.carretmarket.features.board
 
 import android.util.Log
-import androidx.lifecycle.ViewModel
 import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
 import com.example.carretmarket.network.base.BaseResponse
@@ -18,7 +17,11 @@ class BoardViewModel: BaseViewModel() {
     var boardList: MutableList<Board> = arrayListOf()
 
     fun onClickPost() {
-        viewEvent(EVENT_ON_POST)
+        viewEvent(EVENT_ON_CLICK_POST)
+    }
+
+    fun onClickFloatingBar() {
+        viewEvent(EVENT_ON_CLICK_FLAOTING_BAR)
     }
 
     /**
@@ -102,6 +105,7 @@ class BoardViewModel: BaseViewModel() {
     }
 
     companion object {
-        const val EVENT_ON_POST = 0
+        const val EVENT_ON_CLICK_POST = 0
+        const val EVENT_ON_CLICK_FLAOTING_BAR = 1
     }
 }

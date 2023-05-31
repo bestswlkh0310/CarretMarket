@@ -11,4 +11,5 @@
     <color name="base1">#FF9800</color>
     <color name="base2">#F1BE91</color>
     <color name="base3">#280A00</color>
+    <color name="gray">#EAEAEA</color>
 </resources>

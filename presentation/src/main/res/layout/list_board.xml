@@ -9,36 +9,44 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" >
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:text="(타이틀제목타이틀제목)"
-            android:textSize="16sp"
-            android:layout_margin="10dp"
-            android:paddingBottom="10dp"/>
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/tv_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="(n시간) 전"
-            android:layout_margin="10dp"
-            android:paddingBottom="10dp"/>
-        <View
-            app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_height="74dp"
+        android:background="@color/gray">
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="#E4E4E4" />
-
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="4dp"
+            android:layout_marginVertical="3dp"
+            app:cardElevation="3dp"
+            app:cardCornerRadius="15dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent" >
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:text="(타이틀제목타이틀제목)"
+                    style="@style/base_text"
+                    android:layout_margin="10dp"
+                    android:paddingBottom="10dp"/>
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:text="(n시간) 전"
+                    style="@style/base_text"
+                    android:layout_margin="10dp"
+                    android:paddingBottom="10dp"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

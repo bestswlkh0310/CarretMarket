@@ -46,7 +46,6 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         this.savedInstanceState = savedInstanceState
-        viewModel.viewEvent(-1)
         performDataBinding()
         observerViewModel()
     }

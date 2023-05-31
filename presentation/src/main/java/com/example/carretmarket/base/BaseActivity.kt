@@ -37,6 +37,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
         viewModel.viewEvent.observe(this) { event ->
             action.invoke(event)
         }
+
+        viewModel
     }
 
     override fun onDestroy() {
