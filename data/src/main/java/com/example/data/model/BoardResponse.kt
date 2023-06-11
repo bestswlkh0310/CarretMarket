@@ -1,4 +1,4 @@
-package com.example.carretmarket.network.response
+package com.example.data.model
 
 data class BoardResponse(
     val id: Long,

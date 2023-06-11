@@ -3,16 +3,12 @@ package com.example.carretmarket.features.home
 import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.animation.ObjectAnimator
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carretmarket.base.BaseFragment
-import com.example.carretmarket.network.model.Item
+import com.example.domain.model.Item
 import com.example.carretmarket.databinding.FragmentHomeBinding
 import com.example.carretmarket.util.Constant.TAG
 

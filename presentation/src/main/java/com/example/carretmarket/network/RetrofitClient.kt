@@ -1,10 +1,8 @@
 package com.example.carretmarket.network
 
-import android.util.Log
-import com.example.carretmarket.network.service.BoardService
-import com.example.carretmarket.network.service.LoginService
-import com.example.carretmarket.network.service.VerifyService
-import com.example.carretmarket.util.Constant.TAG
+import com.example.data.service.BoardService
+import com.example.data.service.LoginService
+import com.example.data.service.VerifyService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.logging.HttpLoggingInterceptor.Level

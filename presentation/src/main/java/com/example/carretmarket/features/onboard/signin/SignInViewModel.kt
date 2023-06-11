@@ -4,19 +4,16 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
-import com.example.carretmarket.network.base.BaseResponse
-import com.example.carretmarket.network.request.SignInRequest
-import com.example.carretmarket.network.response.TokenResponse
-import com.example.carretmarket.network.response.VerifyKeyResponse
+import com.example.data.base.BaseResponse
+import com.example.domain.request.SignInRequest
+import com.example.data.model.TokenResponse
+import com.example.data.model.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.Session
-import com.example.carretmarket.util.VerifyKeyFetcher
 import com.example.carretmarket.util.Constant.TAG
-import kotlinx.coroutines.runBlocking
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.system.exitProcess
 
 class SignInViewModel: BaseViewModel() {
     private lateinit var verifyKey: VerifyKeyResponse

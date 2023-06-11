@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carretmarket.R
 import com.example.carretmarket.base.BaseFragment
-import com.example.carretmarket.network.model.Board
+import com.example.domain.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
 import com.example.carretmarket.util.Constant.TAG
 
@@ -27,6 +27,7 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
         initRecyclerView()
         Log.d(TAG, "BoardFragment - onViewCreated() called")
     }
+
     override fun observerViewModel() {
         bindingViewEvent { event ->
             when (event) {

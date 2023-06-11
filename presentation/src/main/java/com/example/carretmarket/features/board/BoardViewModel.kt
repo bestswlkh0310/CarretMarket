@@ -3,10 +3,10 @@ package com.example.carretmarket.features.board
 import android.util.Log
 import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
-import com.example.carretmarket.network.base.BaseResponse
-import com.example.carretmarket.network.model.Board
-import com.example.carretmarket.network.response.BoardListResponse
-import com.example.carretmarket.network.response.BoardResponse
+import com.example.data.base.BaseResponse
+import com.example.domain.model.Board
+import com.example.data.model.BoardListResponse
+import com.example.data.model.BoardResponse
 import com.example.carretmarket.util.AdapterManager
 import com.example.carretmarket.util.Constant.TAG
 import retrofit2.Call
@@ -16,26 +16,13 @@ import retrofit2.Response
 class BoardViewModel: BaseViewModel() {
     var boardList: MutableList<Board> = arrayListOf()
 
-    fun onClickPost() {
-        viewEvent(EVENT_ON_CLICK_POST)
-    }
+    fun onClickPost() { viewEvent(EVENT_ON_CLICK_POST) }
+    fun onClickFloatingBar() { viewEvent(EVENT_ON_CLICK_FLAOTING_BAR) }
 
-    fun onClickFloatingBar() {
-        viewEvent(EVENT_ON_CLICK_FLAOTING_BAR)
-    }
-
-    /**
-     * @param boards
-     * add Boards in itemList
-     */
     fun addBoards(boards: List<Board>) {
         AdapterManager.addItems(boardList, boards)
     }
 
-    /**
-     * @param id
-     * @return board: BoardResponse
-     */
     fun getBoard(id: Long? = null): BoardResponse? {
         var board: BoardResponse? = null
         val call = RetrofitClient.boardAPI.getBoardById(id)
@@ -53,10 +40,6 @@ class BoardViewModel: BaseViewModel() {
         return board
     }
 
-    /**
-     * @param timestamp
-     * @return boards: List<Board>
-     */
     fun getBoards(timestamp: Long? = null): List<Board> {
         Log.d(TAG, "BoardViewModel - getBoards() called")
         val call = RetrofitClient.boardAPI.getBoards(timestamp)
@@ -88,9 +71,6 @@ class BoardViewModel: BaseViewModel() {
         return boards
     }
 
-    /**
-     * clear boardList
-     */
     fun reloadBoard() {
         Log.d(TAG, "BoardViewModel - reloadBoard() called")
         AdapterManager.clearItem(boardList)

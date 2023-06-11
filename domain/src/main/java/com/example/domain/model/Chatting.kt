@@ -1,4 +1,4 @@
-package com.example.carretmarket.network.model
+package com.example.domain.model
 
 data class Chatting(
     var name: String,

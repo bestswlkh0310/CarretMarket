@@ -1,4 +1,4 @@
-package com.example.carretmarket.network.base
+package com.example.data.base
 
 data class BaseResponse<T>(
     val status: Int,

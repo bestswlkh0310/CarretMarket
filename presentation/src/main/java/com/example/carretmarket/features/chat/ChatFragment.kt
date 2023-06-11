@@ -1,14 +1,10 @@
 package com.example.carretmarket.features.chat
 
-import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carretmarket.base.BaseFragment
-import com.example.carretmarket.network.model.Chatting
+import com.example.domain.model.Chatting
 import com.example.carretmarket.databinding.FragmentChattingBinding
 import com.example.carretmarket.util.Constant.TAG
 

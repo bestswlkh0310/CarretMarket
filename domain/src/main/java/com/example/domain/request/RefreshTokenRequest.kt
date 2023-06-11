@@ -1,4 +1,4 @@
-package com.example.carretmarket.network.request
+package com.example.domain.request
 
 data class RefreshTokenRequest(
     val refreshToken: String

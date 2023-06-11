@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carretmarket.network.model.Board
+import com.example.domain.model.Board
 import com.example.carretmarket.databinding.ListBoardBinding
 import java.sql.Date
 import java.sql.Timestamp

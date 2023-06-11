@@ -1,4 +1,4 @@
-package com.example.carretmarket.network.response
+package com.example.data.model
 
 data class VerifyKeyResponse(
     val verificationToken: String,

@@ -1,9 +1,9 @@
 package com.example.carretmarket.util
 
 import android.util.Log
-import com.example.carretmarket.network.response.VerifyKeyResponse
+import com.example.data.model.VerifyKeyResponse
 import com.example.carretmarket.network.RetrofitClient
-import com.example.carretmarket.network.base.BaseResponse
+import com.example.data.base.BaseResponse
 import kotlinx.coroutines.delay
 import retrofit2.Call
 import retrofit2.Callback

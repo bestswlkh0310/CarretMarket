@@ -4,10 +4,9 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.example.carretmarket.base.BaseViewModel
 import com.example.carretmarket.network.RetrofitClient
-import com.example.carretmarket.network.base.BaseResponse
-import com.example.carretmarket.network.request.NewBoardRequest
-import com.example.carretmarket.network.response.BoardResponse
-import com.example.carretmarket.util.Constant.TAG
+import com.example.data.base.BaseResponse
+import com.example.domain.request.NewBoardRequest
+import com.example.data.model.BoardResponse
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

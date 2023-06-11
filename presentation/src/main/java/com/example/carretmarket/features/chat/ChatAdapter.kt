@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carretmarket.network.model.Chatting
+import com.example.domain.model.Chatting
 import com.example.carretmarket.databinding.ListChatBinding
 
 class ChatAdapter(private val chatList: List<Chatting>): RecyclerView.Adapter<ChatAdapter.ChatHolder>() {

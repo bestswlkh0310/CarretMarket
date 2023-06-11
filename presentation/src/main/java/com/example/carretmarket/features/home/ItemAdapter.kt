@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.example.carretmarket.network.model.Item
+import com.example.domain.model.Item
 import com.example.carretmarket.databinding.ListItemBinding
 
 class ItemAdapter(private val itemList: List<Item>): RecyclerView.Adapter<ItemAdapter.ItemHolder>() {
