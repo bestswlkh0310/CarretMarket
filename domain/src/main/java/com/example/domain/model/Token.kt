@@ -1,7 +1,6 @@
-package com.example.data.model
+package com.example.domain.model
 
-
-data class TokenResponse(
+data class Token (
     val accessToken: String,
     val refreshToken: String,
     val expiresAt: Long

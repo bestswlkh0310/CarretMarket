@@ -11,9 +11,9 @@ import retrofit2.http.POST
 
 interface LoginService {
     @POST("api/v1/sign/in")
-    suspend fun login(@Body request: SignInRequest): Call<BaseResponse<TokenResponse>>
+    suspend fun login(@Body request: SignInRequest): BaseResponse<TokenResponse>
     @POST("api/v1/sign/up")
-    suspend fun register(@Body request: SignUpRequest): Call<BaseResponse<Unit>>
+    suspend fun register(@Body request: SignUpRequest): BaseResponse<Unit>
     @POST("api/v1/sign/refresh")
-    suspend fun refresh(@Body request: RefreshTokenRequest): Call<BaseResponse<TokenResponse>>
+    suspend fun refresh(@Body request: RefreshTokenRequest): BaseResponse<TokenResponse>
 }

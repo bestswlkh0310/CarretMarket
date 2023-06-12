@@ -4,6 +4,7 @@ import com.example.data.base.BaseResponse
 import com.example.data.model.BoardListResponse
 import com.example.data.model.BoardResponse
 import com.example.domain.request.NewBoardRequest
+import com.example.domain.request.PatchBoardRequest
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -20,7 +21,8 @@ interface BoardService {
 
     @PATCH("api/v1/board/{id}")
     suspend fun patchBoard(
-        @Path("id") id: Long
+        @Path("id") id: Long,
+        @Body newBoardRequest: PatchBoardRequest
     ): BaseResponse<Unit>
 
     @DELETE("api/v1/board/{id}")

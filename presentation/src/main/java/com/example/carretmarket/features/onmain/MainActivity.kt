@@ -7,7 +7,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.carretmarket.R
 import com.example.carretmarket.base.BaseActivity
 import com.example.carretmarket.databinding.ActivityOnMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityOnMainBinding, MainViewModel>() {
     override val viewModel by viewModels<MainViewModel>()
 

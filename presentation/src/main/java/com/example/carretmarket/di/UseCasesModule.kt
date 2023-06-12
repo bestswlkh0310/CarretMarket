@@ -1,12 +1,15 @@
 package com.example.carretmarket.di
 
 import com.example.domain.repository.BoardRepository
+import com.example.domain.repository.VerifyRepository
 import com.example.domain.usecase.board.BoardUseCases
 import com.example.domain.usecase.board.DeleteBoard
 import com.example.domain.usecase.board.GetBoard
 import com.example.domain.usecase.board.GetBoards
 import com.example.domain.usecase.board.PatchBoard
 import com.example.domain.usecase.board.PostBoard
+import com.example.domain.usecase.verify.GetVerifyKey
+import com.example.domain.usecase.verify.VerifyUseCases
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,6 +28,14 @@ object UseCasesModule {
             GetBoards(boardRepository),
             DeleteBoard(boardRepository),
             PatchBoard(boardRepository),
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideVerifyUseCases(verifyRepository: VerifyRepository): VerifyUseCases {
+        return VerifyUseCases(
+            GetVerifyKey(verifyRepository)
         )
     }
 }

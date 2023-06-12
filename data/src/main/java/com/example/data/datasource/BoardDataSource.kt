@@ -3,6 +3,7 @@ package com.example.data.datasource
 import com.example.domain.model.Board
 import com.example.domain.model.BoardList
 import com.example.domain.request.NewBoardRequest
+import com.example.domain.request.PatchBoardRequest
 import kotlinx.coroutines.flow.Flow
 
 interface BoardDataSource {
@@ -15,7 +16,8 @@ interface BoardDataSource {
     ): Flow<List<BoardList>>
 
     fun patchBoard(
-        id: Long
+        id: Long,
+        patchBoardRequest: PatchBoardRequest
     ): Flow<Unit>
 
     fun deleteBoard(

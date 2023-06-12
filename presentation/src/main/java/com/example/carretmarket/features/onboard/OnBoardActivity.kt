@@ -8,7 +8,9 @@ import com.example.carretmarket.R
 import com.example.carretmarket.base.BaseActivity
 import com.example.carretmarket.databinding.ActivityOnBoardBinding
 import com.example.carretmarket.features.onboard.signuporin.SignUpOrInFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class OnBoardActivity : BaseActivity<ActivityOnBoardBinding, OnBoardViewModel>() {
     override val viewModel: OnBoardViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {

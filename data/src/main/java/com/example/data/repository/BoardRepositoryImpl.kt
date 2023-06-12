@@ -5,6 +5,7 @@ import com.example.domain.model.Board
 import com.example.domain.model.BoardList
 import com.example.domain.repository.BoardRepository
 import com.example.domain.request.NewBoardRequest
+import com.example.domain.request.PatchBoardRequest
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
@@ -19,8 +20,8 @@ class BoardRepositoryImpl @Inject constructor(
         return boardDataSource.getBoards(timestamp)
     }
 
-    override fun patchBoard(id: Long): Flow<Unit> {
-        return boardDataSource.patchBoard(id)
+    override fun patchBoard(id: Long, patchBoardRequest: PatchBoardRequest): Flow<Unit> {
+        return boardDataSource.patchBoard(id, patchBoardRequest)
     }
 
     override fun deleteBoard(id: Long): Flow<Unit> {

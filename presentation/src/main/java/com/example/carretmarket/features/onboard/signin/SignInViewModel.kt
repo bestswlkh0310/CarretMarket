@@ -4,27 +4,29 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.data.base.BaseResponse
-import com.example.domain.request.SignInRequest
-import com.example.data.model.TokenResponse
 import com.example.data.model.VerifyKeyResponse
-import com.example.carretmarket.util.RSA
-import com.example.carretmarket.util.Session
 import com.example.carretmarket.util.Constant.TAG
+import com.example.domain.request.NewBoardRequest
+import com.example.domain.usecase.board.BoardUseCases
+import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import javax.inject.Inject
 
-class SignInViewModel constructor(
-//    private val ver
+@HiltViewModel
+class SignInViewModel @Inject constructor(
+    private val boardUseCases: BoardUseCases
 ): BaseViewModel() {
-    private lateinit var verifyKey: VerifyKeyResponse
+
+    private val _getVerifyKeyState = MutableSharedFlow<VerifyKeyResponse>()
+    val getVerifyKeyState: SharedFlow<VerifyKeyResponse> = _getVerifyKeyState
+
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
 
     fun onClickLogin() {
-        Log.d(TAG, "id - $id pw - $pw - onLoginClick() called")
+        Log.d(TAG, "id - ${id.value} pw - ${pw.value} - onLoginClick() called")
 
 //        val mainIntent = Intent(context, MainActivity::class.java)
         if (pw.value == null) return
@@ -32,7 +34,18 @@ class SignInViewModel constructor(
 //            VerifyKeyFetcher.fetch() ?: exitProcess(-1)
 //        }
 
-        val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw.value!!)
+//        val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw.value!!)
+
+        viewModelScope.launch {
+            boardUseCases.postBoard(NewBoardRequest(
+                "0612",
+                "0612"
+            )).collect {
+                Log.d(TAG, "$it - onClickLogin() called")
+            }
+        }
+
+
         /*val call = RetrofitClient.loginAPI.login(
             SignInRequest(
                 id.value!!,
@@ -40,11 +53,6 @@ class SignInViewModel constructor(
                 verifyKey.verificationToken
             )
         )*/
-
-        viewModelScope.launch {
-
-        }
-
         /*call.enqueue(object : Callback<BaseResponse<TokenResponse>> {
             override fun onResponse(call: Call<BaseResponse<TokenResponse>>, response: Response<BaseResponse<TokenResponse>>) {
                 if (response.code() == 200) {
@@ -62,5 +70,10 @@ class SignInViewModel constructor(
                 Log.d("LoginRequest", "Failed to login: ${t.stackTraceToString()}")
             }
         })*/
+    }
+
+
+    companion object {
+        const val EVENT_VERIFY_KEY = 0
     }
 }
