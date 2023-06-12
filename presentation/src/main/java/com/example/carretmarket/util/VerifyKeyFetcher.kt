@@ -2,7 +2,6 @@ package com.example.carretmarket.util
 
 import android.util.Log
 import com.example.data.model.VerifyKeyResponse
-import com.example.carretmarket.network.RetrofitClient
 import com.example.data.base.BaseResponse
 import kotlinx.coroutines.delay
 import retrofit2.Call
@@ -13,7 +12,7 @@ object VerifyKeyFetcher {
     suspend fun fetch(): VerifyKeyResponse? {
         var toReturn: VerifyKeyResponse? = null
         var continuable = false
-        RetrofitClient.verifyAPI.fetchVerifyKey().enqueue(object : Callback<BaseResponse<VerifyKeyResponse>> {
+        /*RetrofitClient.verifyAPI.fetchVerifyKey().enqueue(object : Callback<BaseResponse<VerifyKeyResponse>> {
             override fun onResponse(
                 call: Call<BaseResponse<VerifyKeyResponse>>,
                 response: Response<BaseResponse<VerifyKeyResponse>>
@@ -35,7 +34,7 @@ object VerifyKeyFetcher {
                 Log.d("FetchVerifyKey", "Failed to fetch: ${t.stackTraceToString()}")
                 continuable = true
             }
-        })
+        })*/
 
         while (!continuable) {
             Log.d("FetchVerifyKey", "Yes: no")

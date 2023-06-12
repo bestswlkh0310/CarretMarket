@@ -1,35 +1,30 @@
 package com.example.carretmarket.features.board.post
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.carretmarket.network.RetrofitClient
-import com.example.data.base.BaseResponse
 import com.example.domain.request.NewBoardRequest
-import com.example.data.model.BoardResponse
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.domain.usecase.board.BoardUseCases
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class PostingViewModel: BaseViewModel() {
+class PostingViewModel @Inject constructor(
+    private val boardUseCases: BoardUseCases
+) : BaseViewModel() {
     val title = MutableLiveData("")
     val content = MutableLiveData("")
-    fun postContent() {
-        val board = NewBoardRequest(
-            title.value!!,
-            content.value!!
-        )
-        Log.d("로그", "${board} - postContent() called")
-        val call = RetrofitClient.boardAPI.postBoard(board)
-        call.enqueue(object: Callback<BaseResponse<BoardResponse>> {
-            override fun onResponse(call: Call<BaseResponse<BoardResponse>>, response: Response<BaseResponse<BoardResponse>>) {
-//                if (response.isSuccessful) {
-//                }
-//                val body = response.raw().body()!!.string()
-            }
-            override fun onFailure(call: Call<BaseResponse<BoardResponse>>, message: Throwable) {
 
-            }
-        })
+    private val _postBoardState = MutableSharedFlow<Unit>()
+
+    fun postContent() {
+        viewModelScope.launch {
+            boardUseCases.postBoard(
+                NewBoardRequest(
+                    title.value!!,
+                    content.value!!
+                )
+            )
+        }
     }
 }

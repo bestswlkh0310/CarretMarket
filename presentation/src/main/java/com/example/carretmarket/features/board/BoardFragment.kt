@@ -7,6 +7,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.viewModelScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -15,6 +17,9 @@ import com.example.carretmarket.base.BaseFragment
 import com.example.domain.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
 import com.example.carretmarket.util.Constant.TAG
+import com.example.domain.model.BoardList
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     override val viewModel: BoardViewModel by viewModels()
@@ -35,21 +40,28 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
                 BoardViewModel.EVENT_ON_CLICK_FLAOTING_BAR -> onClickFloatingBar()
             }
         }
+        viewModel.viewModelScope.launch {
+            viewModel.getBoardState.collect { board ->
+                Log.d(TAG, "$board - observerViewModel() called")
+            }
+        }
+
+        viewModel.viewModelScope.launch {
+            viewModel.getBoardsState.collect { boards ->
+                viewModel.addBoards(boards)
+            }
+        }
     }
 
     private fun initRecyclerView() {
         val boardList = arrayListOf(
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "123"),
-            Board(1,12, "12313123123"),
-            Board(1,12, "123"),
-            Board(1,12, "123123123"),
-            Board(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
+            BoardList(1,12, "123"),
         )
         viewModel.addBoards(boardList)
         adapter = BoardAdapter(viewModel.boardList)
@@ -62,8 +74,7 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
                 // recyclerView 아래 닿을 시 게시글 로딩
                 if (!mBinding.rvBoard.canScrollVertically(1)) {
                     Log.d(TAG, "onBottom - onScrolled() called")
-                    val boards = viewModel.getBoards(boardList.last().timestamp)
-                    viewModel.addBoards(boards)
+                    viewModel.getBoards(boardList.last().timestamp)
                 }
             }
         })

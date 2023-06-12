@@ -1,74 +1,52 @@
 package com.example.carretmarket.features.board
 
 import android.util.Log
+import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.carretmarket.network.RetrofitClient
-import com.example.data.base.BaseResponse
 import com.example.domain.model.Board
-import com.example.data.model.BoardListResponse
-import com.example.data.model.BoardResponse
 import com.example.carretmarket.util.AdapterManager
 import com.example.carretmarket.util.Constant.TAG
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import com.example.domain.model.BoardList
+import com.example.domain.model.toBoard
+import com.example.domain.usecase.board.BoardUseCases
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class BoardViewModel: BaseViewModel() {
+class BoardViewModel @Inject constructor(
+    private val boardUseCases: BoardUseCases
+) : BaseViewModel() {
+    private val _getBoardState = MutableSharedFlow<Board>()
+    val getBoardState: SharedFlow<Board> = _getBoardState
+
+    private val _getBoardsState = MutableSharedFlow<List<BoardList>>()
+    val getBoardsState: SharedFlow<List<BoardList>> = _getBoardsState
+
     var boardList: MutableList<Board> = arrayListOf()
 
     fun onClickPost() { viewEvent(EVENT_ON_CLICK_POST) }
     fun onClickFloatingBar() { viewEvent(EVENT_ON_CLICK_FLAOTING_BAR) }
 
-    fun addBoards(boards: List<Board>) {
-        AdapterManager.addItems(boardList, boards)
+    fun addBoards(boards: List<BoardList>) {
+        AdapterManager.addItems(boardList, boards.map { it.toBoard() })
     }
 
-    fun getBoard(id: Long? = null): BoardResponse? {
-        var board: BoardResponse? = null
-        val call = RetrofitClient.boardAPI.getBoardById(id)
-        call.enqueue(object: Callback<BaseResponse<BoardResponse>> {
-            override fun onResponse(
-                call: Call<BaseResponse<BoardResponse>>,
-                response: Response<BaseResponse<BoardResponse>>
-            ) {
-                if (response.isSuccessful) {
-                    board = response.body()!!.data
-                }
+    fun getBoard(id: Long? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            boardUseCases.getBoard(id).collect {board ->
+                _getBoardState.emit(board)
             }
-            override fun onFailure(call: Call<BaseResponse<BoardResponse>>, t: Throwable) {}
-        })
-        return board
+        }
     }
 
-    fun getBoards(timestamp: Long? = null): List<Board> {
-        Log.d(TAG, "BoardViewModel - getBoards() called")
-        val call = RetrofitClient.boardAPI.getBoards(timestamp)
-        val boards: MutableList<Board> = arrayListOf()
-        call.enqueue(object: Callback<BaseResponse<List<BoardListResponse>>> {
-            override fun onResponse(
-                call: Call<BaseResponse<List<BoardListResponse>>>,
-                response: Response<BaseResponse<List<BoardListResponse>>>
-            ) {
-                if (response.code() == 200) {
-                    response.body()!!.data.forEach {
-                        boards.add(
-                            Board(
-                                it.id,
-                                it.timestamp,
-                                it.title
-                            )
-                        )
-                    }
-                } else {
-                    Log.d(TAG, "HomeViewModel() - ${response.message()} called")
-                }
+    fun getBoards(timestamp: Long? = null) {
+        viewModelScope.launch(Dispatchers.IO) {
+            boardUseCases.getBoards(timestamp).collect { boards ->
+                _getBoardsState.emit(boards)
             }
-
-            override fun onFailure(call: Call<BaseResponse<List<BoardListResponse>>>, t: Throwable) {
-
-            }
-        })
-        return boards
+        }
     }
 
     fun reloadBoard() {

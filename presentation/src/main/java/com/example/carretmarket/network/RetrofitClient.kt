@@ -1,3 +1,4 @@
+/*
 package com.example.carretmarket.network
 
 import com.example.data.service.BoardService
@@ -26,4 +27,4 @@ object RetrofitClient {
     var verifyAPI: VerifyService = server.create(VerifyService::class.java)
     var loginAPI: LoginService = server.create(LoginService::class.java)
     var boardAPI: BoardService = server.create(BoardService::class.java)
-}
+}*/

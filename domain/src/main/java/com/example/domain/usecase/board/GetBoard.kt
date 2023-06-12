@@ -10,7 +10,7 @@ import javax.inject.Inject
 class GetBoard @Inject constructor(
     private val repository: BoardRepository
 ) {
-    fun invoke(): Flow<Board> = flow {
-        repository.getBoard()
+    operator fun invoke(id: Long?): Flow<Board> {
+        return repository.getBoardById(id)
     }
 }

@@ -2,8 +2,8 @@ package com.example.carretmarket.features.onboard.signin
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.carretmarket.network.RetrofitClient
 import com.example.data.base.BaseResponse
 import com.example.domain.request.SignInRequest
 import com.example.data.model.TokenResponse
@@ -11,11 +11,14 @@ import com.example.data.model.VerifyKeyResponse
 import com.example.carretmarket.util.RSA
 import com.example.carretmarket.util.Session
 import com.example.carretmarket.util.Constant.TAG
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class SignInViewModel: BaseViewModel() {
+class SignInViewModel constructor(
+//    private val ver
+): BaseViewModel() {
     private lateinit var verifyKey: VerifyKeyResponse
     val id = MutableLiveData<String>()
     val pw = MutableLiveData<String>()
@@ -30,15 +33,19 @@ class SignInViewModel: BaseViewModel() {
 //        }
 
         val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw.value!!)
-        val call = RetrofitClient.loginAPI.login(
+        /*val call = RetrofitClient.loginAPI.login(
             SignInRequest(
                 id.value!!,
                 pwEncrypted,
                 verifyKey.verificationToken
             )
-        )
+        )*/
 
-        call.enqueue(object : Callback<BaseResponse<TokenResponse>> {
+        viewModelScope.launch {
+
+        }
+
+        /*call.enqueue(object : Callback<BaseResponse<TokenResponse>> {
             override fun onResponse(call: Call<BaseResponse<TokenResponse>>, response: Response<BaseResponse<TokenResponse>>) {
                 if (response.code() == 200) {
                     val body = response.body()?.data
@@ -54,6 +61,6 @@ class SignInViewModel: BaseViewModel() {
             override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
                 Log.d("LoginRequest", "Failed to login: ${t.stackTraceToString()}")
             }
-        })
+        })*/
     }
 }

@@ -5,3 +5,11 @@ data class BoardList (
     var timestamp: Long?,
     var title: String
 )
+
+fun BoardList.toBoard(): Board {
+    return Board(
+        this.id,
+        this.timestamp,
+        this.title
+    )
+}
