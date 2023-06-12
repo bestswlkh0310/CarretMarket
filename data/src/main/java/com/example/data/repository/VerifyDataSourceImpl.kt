@@ -1,8 +1,10 @@
 package com.example.data.repository
 
 import com.example.data.datasource.VerifyDataSource
+import com.example.data.mapper.toEntity
 import com.example.data.model.VerifyKeyResponse
 import com.example.data.service.VerifyService
+import com.example.domain.model.VerifyKey
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -12,9 +14,9 @@ import javax.inject.Inject
 class VerifyDataSourceImpl @Inject constructor(
     private val verifyService: VerifyService
 ) : VerifyDataSource {
-    override fun fetchVerifyKey(): Flow<VerifyKeyResponse> {
+    override fun fetchVerifyKey(): Flow<VerifyKey> {
         return flow {
-            emit(verifyService.fetchVerifyKey().data)
+            emit(verifyService.fetchVerifyKey().data.toEntity())
         }.flowOn(Dispatchers.IO)
     }
 

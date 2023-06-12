@@ -10,7 +10,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.databinding.FragmentSignUpBinding
 import com.example.carretmarket.util.Constant.TAG
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SignUpFragment : BaseFragment<FragmentSignUpBinding, SignUpViewModel>() {
     override val viewModel: SignUpViewModel by viewModels()
 
