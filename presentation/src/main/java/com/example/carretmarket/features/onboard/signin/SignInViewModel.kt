@@ -6,17 +6,19 @@ import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
 import com.example.data.model.VerifyKeyResponse
 import com.example.carretmarket.util.Constant.TAG
-import com.example.domain.request.NewBoardRequest
-import com.example.domain.usecase.board.BoardUseCases
+import com.example.carretmarket.wiget.CarretApplication
+import com.example.domain.request.SignInRequest
+import com.example.domain.usecase.login.LoginUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class SignInViewModel @Inject constructor(
-    private val boardUseCases: BoardUseCases
+    private val loginUseCases: LoginUseCases
 ): BaseViewModel() {
 
     private val _getVerifyKeyState = MutableSharedFlow<VerifyKeyResponse>()
@@ -28,41 +30,26 @@ class SignInViewModel @Inject constructor(
     fun onClickLogin() {
         Log.d(TAG, "id - ${id.value} pw - ${pw.value} - onLoginClick() called")
 
-        if (pw.value == null) return
+        if (id.value == null || pw.value == null) return
 
         viewModelScope.launch {
-
-        }
-
-
-        /*val call = RetrofitClient.loginAPI.login(
-            SignInRequest(
-                id.value!!,
-                pwEncrypted,
-                verifyKey.verificationToken
-            )
-        )*/
-        /*call.enqueue(object : Callback<BaseResponse<TokenResponse>> {
-            override fun onResponse(call: Call<BaseResponse<TokenResponse>>, response: Response<BaseResponse<TokenResponse>>) {
-                if (response.code() == 200) {
-                    val body = response.body()?.data
-                    Session.accessToken = body?.accessToken
-                    Session.refreshToken = body?.refreshToken
-//                    context.startActivity(mainIntent)
-                    Log.d("LoginRequest", "Logged in maybe. ${Session.accessToken} ${Session.refreshToken}")
-                } else {
-                    Log.d("LoginRequest", "Failed to login: ${response.code()} ${response.errorBody()?.string()}")
+            loginUseCases.login(
+                SignInRequest(
+                    id.value!!,
+                    pw.value!!,
+                    CarretApplication.prefs.verificationToken
+                )
+            ).collect {
+                viewEvent(EVENT_ON_CLICK_SIGN_IN)
+                with(CarretApplication.prefs) {
+                    accessToken = it.accessToken
+                    refreshToken = it.refreshToken
                 }
             }
-
-            override fun onFailure(call: Call<BaseResponse<TokenResponse>>, t: Throwable) {
-                Log.d("LoginRequest", "Failed to login: ${t.stackTraceToString()}")
-            }
-        })*/
+        }
     }
 
-
     companion object {
-        const val EVENT_VERIFY_KEY = 0
+        const val EVENT_ON_CLICK_SIGN_IN = 0
     }
 }

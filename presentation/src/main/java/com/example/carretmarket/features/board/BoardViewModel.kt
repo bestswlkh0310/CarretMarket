@@ -34,7 +34,7 @@ class BoardViewModel @Inject constructor(
     }
 
     fun getBoard(id: Long? = null) {
-        viewModelScope.launch(Dispatchers.IO) {
+        viewModelScope.launch {
             boardUseCases.getBoard(id).collect {board ->
                 _getBoardState.emit(board)
             }
@@ -55,6 +55,7 @@ class BoardViewModel @Inject constructor(
 //        itemList.removeFirst()
         show()
     }
+
     private fun show() {
         Log.d(TAG, "BoardViewModel - show() called")
         for (i in boardList) {

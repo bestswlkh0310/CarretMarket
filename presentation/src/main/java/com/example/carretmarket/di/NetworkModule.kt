@@ -98,7 +98,6 @@ object NetworkModule {
     fun provideHeaderInterceptor() = Interceptor { chain ->
         with(chain) {
             val newRequest = request().newBuilder()
-//                .addHeader("Authorization", "Bearer ${MenToMenApplication.prefs.accessToken}")
                 .addHeader("Authorization", "Bearer ${CarretApplication.prefs.accessToken}")
                 .build()
             proceed(newRequest)

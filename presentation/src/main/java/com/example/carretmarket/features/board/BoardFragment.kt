@@ -27,11 +27,6 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     private lateinit var adapter: BoardAdapter
     private var isFabOpen = false
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initRecyclerView()
-        Log.d(TAG, "BoardFragment - onViewCreated() called")
-    }
 
     override fun observerViewModel() {
         bindingViewEvent { event ->
@@ -53,6 +48,11 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        initRecyclerView()
+    }
+
     private fun initRecyclerView() {
         val boardList = arrayListOf(
             BoardList(1,12, "123"),
@@ -68,12 +68,9 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
 
         mBinding.rvBoard.adapter = adapter
         mBinding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
-        mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {
-            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-                super.onScrolled(recyclerView, dx, dy)
-                // recyclerView 아래 닿을 시 게시글 로딩
+        mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {; override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {; super.onScrolled(recyclerView, dx, dy)
+                // recyclerView 아래 닿 -> 게시글 로딩
                 if (!mBinding.rvBoard.canScrollVertically(1)) {
-                    Log.d(TAG, "onBottom - onScrolled() called")
                     viewModel.getBoards(boardList.last().timestamp)
                 }
             }
@@ -89,9 +86,7 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     private fun onClickFloatingBar() {
         if (isFabOpen) {
             val anim = ObjectAnimator.ofFloat(mBinding.floatingBtn1, "translationY", 0f).apply { start() }
-            anim.addListener(object : AnimatorListenerAdapter() {
-                override fun onAnimationEnd(animation: Animator) {
-                    super.onAnimationEnd(anim)
+            anim.addListener(object : AnimatorListenerAdapter() {; override fun onAnimationEnd(animation: Animator) {; super.onAnimationEnd(anim)
                     mBinding.floatingBtn1.visibility = View.INVISIBLE
                 }
             })

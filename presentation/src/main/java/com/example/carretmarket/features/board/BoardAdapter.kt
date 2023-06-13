@@ -9,14 +9,15 @@ import com.example.carretmarket.databinding.ListBoardBinding
 import java.sql.Date
 import java.sql.Timestamp
 
-class BoardAdapter(private val boardList: List<Board>): RecyclerView.Adapter<BoardAdapter.BoardHolder>() {
-    val TAG: String = "로그"
+class BoardAdapter(
+    private val boardList: List<Board>
+    ): RecyclerView.Adapter<BoardAdapter.BoardHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardHolder {
         return BoardHolder(ListBoardBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
             itemView.setOnClickListener {
                 val curPos: Int = adapterPosition
                 val board: Board = boardList[curPos]
-                Toast.makeText(parent.context, "${board.title} ${board.timestamp} ${board.id}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(parent.context, board.toString(), Toast.LENGTH_SHORT).show()
             }
         }
     }

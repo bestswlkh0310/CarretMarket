@@ -46,6 +46,7 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
         performDataBinding()
         observerViewModel()
     }
+
     private fun performDataBinding() {
         mViewModel = if (::mViewModel.isInitialized) mViewModel else viewModel
         mBinding.setVariable(BR.vm, mViewModel)
@@ -53,13 +54,12 @@ abstract class BaseFragment<VB : ViewDataBinding, VM : BaseViewModel> : Fragment
     }
 
     protected fun bindingViewEvent(action: (event: Any) -> Unit) {
-        if (isLoad == false) {
+        if (!isLoad) {
             isLoad = true
             viewModel.viewEvent.observe(this) { event ->
                 action.invoke(event)
             }
         }
-
     }
 
     override fun onDestroy() {
