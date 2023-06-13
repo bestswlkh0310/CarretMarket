@@ -57,17 +57,9 @@ object NetworkModule {
         okHttpClientBuilder.addInterceptor(headerInterceptor)
         okHttpClientBuilder.addInterceptor(LoggerInterceptor)
         val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-
-            }
-
-            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {
-
-            }
-
-            override fun getAcceptedIssuers(): Array<X509Certificate> {
-                return arrayOf()
-            }
+            override fun checkClientTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
+            override fun checkServerTrusted(chain: Array<out X509Certificate>?, authType: String?) {}
+            override fun getAcceptedIssuers(): Array<X509Certificate> { return arrayOf() }
         })
 
         val sslContext = SSLContext.getInstance("SSL")

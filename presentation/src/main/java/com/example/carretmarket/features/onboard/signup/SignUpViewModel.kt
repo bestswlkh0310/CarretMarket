@@ -1,18 +1,15 @@
 package com.example.carretmarket.features.onboard.signup
 
 import android.util.Log
-import android.util.LogPrinter
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.data.model.VerifyKeyResponse
 import com.example.carretmarket.util.Constant.TAG
 import com.example.carretmarket.util.RSA
 import com.example.domain.request.SignUpRequest
 import com.example.domain.usecase.login.LoginUseCases
 import com.example.domain.usecase.verify.VerifyUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -31,40 +28,14 @@ class SignUpViewModel @Inject constructor(
 
         viewModelScope.launch {
             verifyUseCases.getVerifyKey().collect {
+                Log.d(TAG, "SignUpViewModel - onSignUpClick() called")
                 loginUseCases.register(SignUpRequest(
-                    id.value!!,
-                    email.value!!,
-                    RSA.encrypt(it.publicKey, pw.value!!),
-                    it.verificationToken
-                ))
+                    username = id.value!!,
+                    email = email.value!!,
+                    password = RSA.encrypt(it.publicKey, pw.value!!),
+                    verificationToken = it.verificationToken
+                )).collect {}
             }
         }
-
-//        verifyKey = runBlocking {
-//            VerifyKeyFetcher.fetch() ?: exitProcess(-1)
-//        }
-//        val startIntent = Intent(context, OnBoardActivity::class.java)
-//        if (pw.isBlank()) return
-//        val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw.value!!)
-
-        /*val call = RetrofitClient.loginAPI.register(
-            SignUpRequest(
-                id.value!!,
-                email.value!!,
-                pwEncrypted,
-                verifyKey.verificationToken
-            )
-        )
-        call.enqueue(object : Callback<BaseResponse<Unit>> {
-            override fun onResponse(call: Call<BaseResponse<Unit>>, response: Response<BaseResponse<Unit>>) {
-                if (response.code() == 200) {
-//                    context.startActivity(startIntent)
-                }
-            }
-
-            override fun onFailure(call: Call<BaseResponse<Unit>>, t: Throwable) {
-                Log.d("RegisterRequest", "Failed to register: ${t.stackTraceToString()}")
-            }
-        })*/
     }
 }

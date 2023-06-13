@@ -28,21 +28,10 @@ class SignInViewModel @Inject constructor(
     fun onClickLogin() {
         Log.d(TAG, "id - ${id.value} pw - ${pw.value} - onLoginClick() called")
 
-//        val mainIntent = Intent(context, MainActivity::class.java)
         if (pw.value == null) return
-//        verifyKey = runBlocking {
-//            VerifyKeyFetcher.fetch() ?: exitProcess(-1)
-//        }
-
-//        val pwEncrypted = RSA.encrypt(verifyKey.publicKey, pw.value!!)
 
         viewModelScope.launch {
-            boardUseCases.postBoard(NewBoardRequest(
-                "0612",
-                "0612"
-            )).collect {
-                Log.d(TAG, "$it - onClickLogin() called")
-            }
+
         }
 
 

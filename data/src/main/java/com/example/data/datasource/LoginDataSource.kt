@@ -7,9 +7,15 @@ import com.example.domain.request.SignUpRequest
 import kotlinx.coroutines.flow.Flow
 
 interface LoginDataSource {
-    fun login(request: SignInRequest): Flow<Token>
+    fun login(
+        request: SignInRequest
+    ): Flow<Token>
 
-    fun register(request: SignUpRequest): Flow<Unit>
+    fun register(
+        request: SignUpRequest
+    ): Flow<Unit>
 
-    fun refresh(request: RefreshTokenRequest): Flow<Token>
+    fun refresh(
+        request: RefreshTokenRequest
+    ): Flow<Token>
 }
