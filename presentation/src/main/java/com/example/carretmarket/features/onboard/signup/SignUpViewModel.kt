@@ -32,13 +32,14 @@ class SignUpViewModel @Inject constructor(
     fun onSignUpClick() {
         viewModelScope.launch {
             verifyUseCases.getVerifyKey().collect {
-                CarretApplication.prefs.verificationToken = it.verificationToken
-                loginUseCases.register(SignUpRequest(
-                    username = id.value!!,
-                    email = email.value!!,
-                    password = RSA.encrypt(it.publicKey, pw.value!!),
-                    verificationToken = it.verificationToken
-                )).collect {
+                loginUseCases.register(
+                    SignUpRequest(
+                        username = id.value!!,
+                        email = email.value!!,
+                        password = RSA.encrypt(it.publicKey, pw.value!!),
+                        verificationToken = it.verificationToken
+                    )
+                ).collect {
                     viewEvent(EVENT_ON_CLICK_SIGN_UP)
                 }
             }

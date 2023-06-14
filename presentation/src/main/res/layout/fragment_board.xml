@@ -34,7 +34,7 @@
             android:contentDescription="post"
             android:onClick="@{() -> vm.onClickPost()}"
             app:fabSize="mini"
-            app:backgroundTint="@color/base1"
+            app:backgroundTint="@color/base"
             app:rippleColor="#000"
             app:srcCompat="@drawable/ic_create"
             android:visibility="invisible"/>
@@ -47,7 +47,7 @@
             android:layout_margin="16dp"
             android:contentDescription="add"
             android:onClick="@{() -> vm.onClickFloatingBar()}"
-            app:backgroundTint="@color/base1"
+            app:backgroundTint="@color/base"
             app:rippleColor="#000"
             app:srcCompat="@drawable/ic_add"
             android:visibility="visible"/>

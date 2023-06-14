@@ -4,6 +4,6 @@
     <style name="base_text">
         <item name="android:fontFamily">@font/suite_boldextra</item>
         <item name="android:textSize">20sp</item>
-        <item name="android:textColor">@color/base3</item>
+        <item name="android:textColor">@color/base</item>
     </style>
 </resources>

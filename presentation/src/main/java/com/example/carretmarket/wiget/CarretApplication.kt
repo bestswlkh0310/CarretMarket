@@ -15,4 +15,3 @@ class CarretApplication: Application() {
         prefs = PreferenceManager(applicationContext)
     }
 }
-

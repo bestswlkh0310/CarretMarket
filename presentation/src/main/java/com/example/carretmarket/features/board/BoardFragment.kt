@@ -18,15 +18,18 @@ import com.example.domain.model.Board
 import com.example.carretmarket.databinding.FragmentBoardBinding
 import com.example.carretmarket.util.Constant.TAG
 import com.example.domain.model.BoardList
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import okhttp3.internal.notify
 
+
+@AndroidEntryPoint
 class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     override val viewModel: BoardViewModel by viewModels()
 
     private lateinit var adapter: BoardAdapter
     private var isFabOpen = false
-
 
     override fun observerViewModel() {
         bindingViewEvent { event ->
@@ -35,17 +38,32 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
                 BoardViewModel.EVENT_ON_CLICK_FLAOTING_BAR -> onClickFloatingBar()
             }
         }
+
         viewModel.viewModelScope.launch {
             viewModel.getBoardState.collect { board ->
-                Log.d(TAG, "$board - observerViewModel() called")
+//                Log.d(TAG, "$board - observerViewModel() called")
             }
         }
 
         viewModel.viewModelScope.launch {
             viewModel.getBoardsState.collect { boards ->
+                boards.forEach {
+                    Log.d(TAG, "$it - observerViewModel() called")
+                }
+                Log.d(TAG, "${this@BoardFragment} - observerViewModel() called")
                 viewModel.addBoards(boards)
+//                adapter.notifyItemRangeInserted(viewModel.boardList.lastIndex, boards.size)
             }
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.d(TAG, "BoardFragment - onCreate() called")
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "BoardFragment - onDestroy() called")
     }
 
     override fun onStart() {
@@ -54,31 +72,30 @@ class BoardFragment: BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     }
 
     private fun initRecyclerView() {
-        val boardList = arrayListOf(
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-            BoardList(1,12, "123"),
-        )
-        viewModel.addBoards(boardList)
+        viewModel.reloadBoard()
+//        if (viewModel.boardList.size != 0) {
+//            adapter.notifyItemRangeRemoved(0, viewModel.boardList.size)
+//        }
+
+        viewModel.getBoards()
         adapter = BoardAdapter(viewModel.boardList)
 
+        ////
         mBinding.rvBoard.adapter = adapter
         mBinding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
         mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {; override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {; super.onScrolled(recyclerView, dx, dy)
                 // recyclerView 아래 닿 -> 게시글 로딩
                 if (!mBinding.rvBoard.canScrollVertically(1)) {
-                    viewModel.getBoards(boardList.last().timestamp)
+                    viewModel.getBoards(viewModel.boardList.last().timestamp)
                 }
             }
         })
+        ////
 
         mBinding.swr.setOnRefreshListener {
             viewModel.reloadBoard()
-            adapter.notifyItemRangeRemoved(0, boardList.size)
+//            adapter.notifyItemRangeRemoved(0, viewModel.boardList.size)
+            viewModel.getBoards()
             mBinding.swr.isRefreshing = false
         }
     }

@@ -8,8 +8,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="base1">#FF9800</color>
-    <color name="base2">#F1BE91</color>
-    <color name="base3">#280A00</color>
+    <color name="base">#FFFFFF</color>
     <color name="gray">#EAEAEA</color>
 </resources>

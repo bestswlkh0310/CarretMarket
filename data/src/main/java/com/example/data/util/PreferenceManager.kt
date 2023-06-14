@@ -19,14 +19,9 @@ class PreferenceManager(context: Context) {
         get() = prefs.getString(REFRESH_TOKEN, "").toString()
         set(value) = prefs.edit().putString(REFRESH_TOKEN, value).apply()
 
-    var verificationToken: String
-        get() = prefs.getString(VERIFICATION_TOKEN, "").toString()
-        set(value) = prefs.edit().putString(VERIFICATION_TOKEN, value).apply()
-
     fun deleteToken() {
         prefs.edit().remove(ACCESS_TOKEN).apply()
         prefs.edit().remove(REFRESH_TOKEN).apply()
-        prefs.edit().remove(VERIFICATION_TOKEN).apply()
     }
 
     companion object {
@@ -34,6 +29,5 @@ class PreferenceManager(context: Context) {
         const val AUTO_LOGIN_KEY = "AUTO_LOGIN_KEY"
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val REFRESH_TOKEN = "REFRESH_TOKEN"
-        const val VERIFICATION_TOKEN = "VERIFICATION_TOKEN"
     }
 }

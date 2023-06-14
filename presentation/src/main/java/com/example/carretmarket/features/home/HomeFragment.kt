@@ -11,7 +11,9 @@ import com.example.carretmarket.base.BaseFragment
 import com.example.domain.model.Item
 import com.example.carretmarket.databinding.FragmentHomeBinding
 import com.example.carretmarket.util.Constant.TAG
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override val viewModel: HomeViewModel by viewModels()
     private lateinit var adapter : ItemAdapter

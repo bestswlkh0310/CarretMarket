@@ -15,9 +15,10 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginHorizontal="4dp"
-            android:layout_marginVertical="3dp"
+            android:layout_marginVertical="2dp"
             app:cardElevation="3dp"
-            app:cardCornerRadius="15dp">
+            app:cardCornerRadius="5dp"
+            android:backgroundTint="@color/black">
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -31,7 +32,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    android:text="(타이틀제목타이틀제목)"
+                    android:text="title"
                     style="@style/base_text"
                     android:layout_margin="10dp"
                     android:paddingBottom="10dp"/>
@@ -41,7 +42,7 @@
                     android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    android:text="(n시간) 전"
+                    android:text="timestamp"
                     style="@style/base_text"
                     android:layout_margin="10dp"
                     android:paddingBottom="10dp"/>

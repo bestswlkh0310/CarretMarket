@@ -5,19 +5,20 @@ import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
 import com.example.domain.request.NewBoardRequest
 import com.example.domain.usecase.board.BoardUseCases
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@HiltViewModel
 class PostingViewModel @Inject constructor(
     private val boardUseCases: BoardUseCases
 ) : BaseViewModel() {
     val title = MutableLiveData("")
     val content = MutableLiveData("")
 
-    private val _postBoardState = MutableSharedFlow<Unit>()
-
     fun postContent() {
+        viewEvent(EVENT_ON_CLICK_UPLOAD)
         viewModelScope.launch {
             boardUseCases.postBoard(
                 NewBoardRequest(
@@ -26,5 +27,9 @@ class PostingViewModel @Inject constructor(
                 )
             )
         }
+    }
+
+    companion object {
+        const val EVENT_ON_CLICK_UPLOAD = 0
     }
 }

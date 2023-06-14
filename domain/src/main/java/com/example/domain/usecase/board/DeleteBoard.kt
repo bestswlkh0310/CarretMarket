@@ -7,7 +7,7 @@ import javax.inject.Inject
 class DeleteBoard @Inject constructor(
     private val boardRepository: BoardRepository
 ) {
-    fun invoke(id: Long): Flow<Unit> {
+    operator fun invoke(id: Long): Flow<Unit> {
         return boardRepository.deleteBoard(id)
     }
 }

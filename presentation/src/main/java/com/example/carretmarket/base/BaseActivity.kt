@@ -47,8 +47,6 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompa
                 Log.d(TAG, "토큰 만료 - bindingViewEvent() called")
             }
         }
-
-        viewModel
     }
 
     override fun onDestroy() {

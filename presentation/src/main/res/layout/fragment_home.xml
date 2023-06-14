@@ -48,7 +48,7 @@
             android:layout_margin="16dp"
             android:contentDescription="post"
             app:fabSize="mini"
-            app:backgroundTint="@color/base1"
+            app:backgroundTint="@color/base"
             app:rippleColor="#000"
             app:srcCompat="@drawable/ic_create"
             android:visibility="invisible"/>
@@ -60,7 +60,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_margin="16dp"
             android:contentDescription="add"
-            app:backgroundTint="@color/base1"
+            app:backgroundTint="@color/base"
             app:rippleColor="#000"
             app:srcCompat="@drawable/ic_add"
             android:visibility="visible"/>

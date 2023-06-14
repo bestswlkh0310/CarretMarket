@@ -1,5 +1,6 @@
 package com.example.data.repository
 
+import android.util.Log
 import com.example.data.datasource.BoardDataSource
 import com.example.domain.model.Board
 import com.example.domain.model.BoardList
@@ -29,6 +30,7 @@ class BoardRepositoryImpl @Inject constructor(
     }
 
     override fun postBoard(newBoardRequest: NewBoardRequest): Flow<Board> {
+        Log.d("로그", "BoardRepositoryImpl - postBoard() called")
         return boardDataSource.postBoard(newBoardRequest)
     }
 }

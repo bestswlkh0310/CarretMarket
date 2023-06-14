@@ -8,7 +8,7 @@ import javax.inject.Inject
 class PatchBoard @Inject constructor(
     private val boardRepository: BoardRepository
 ) {
-    fun invoke(id: Long, patchBoardRequest: PatchBoardRequest): Flow<Unit> {
+    operator fun invoke(id: Long, patchBoardRequest: PatchBoardRequest): Flow<Unit> {
         return boardRepository.patchBoard(id, patchBoardRequest)
     }
 }

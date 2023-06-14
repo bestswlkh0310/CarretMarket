@@ -2,38 +2,8 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/signUpOrInFragment">
-    <fragment
-        android:id="@+id/signUpOrInFragment"
-        android:name="com.example.carretmarket.features.onboard.signuporin.SignUpOrInFragment"
-        android:label="fragment_sign_up_or_in"
-        tools:layout="@layout/fragment_sign_up_or_in" >
-        <action
-            android:id="@+id/action_signUpOrInFragment_to_signInFragment"
-            app:destination="@id/signInFragment" />
-        <action
-            android:id="@+id/action_signUpOrInFragment_to_signUpFragment"
-            app:destination="@id/signUpFragment"/>
-    </fragment>
-    <fragment
-        android:id="@+id/signInFragment"
-        android:name="com.example.carretmarket.features.onboard.signin.SignInFragment"
-        android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" >
-        <action
-            android:id="@+id/action_signInFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/signUpFragment"
-        android:name="com.example.carretmarket.features.onboard.signup.SignUpFragment"
-        android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" >
-        <action
-            android:id="@+id/action_signUpFragment_to_signUpOrInFragment"
-            app:destination="@id/signUpOrInFragment" />
-    </fragment>
+    android:id="@+id/on_main_nav_graph"
+    app:startDestination="@id/homeFragment">
     <fragment
         android:id="@+id/boardFragment"
         android:name="com.example.carretmarket.features.board.BoardFragment"
@@ -41,7 +11,10 @@
         tools:layout="@layout/fragment_board" >
         <action
             android:id="@+id/action_boardFragment_to_postFragment"
-            app:destination="@id/postFragment"/>
+            app:destination="@id/postFragment"
+            app:popUpToInclusive="true"
+            app:popUpTo="@id/boardFragment"
+            app:launchSingleTop="true"/>
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
