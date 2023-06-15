@@ -20,7 +20,6 @@ import com.example.carretmarket.features.community.CommunityViewModel.Companion.
 import com.example.carretmarket.util.Constant.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewModel>() {
     override val viewModel: CommunityViewModel by viewModels()
@@ -37,11 +36,13 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
         }
 
         viewModel.boardsData.observe(this) { boards ->
-            boards.forEach {
-                Log.d(TAG, "$it - observerViewModel() called")
+            if (boards != null) {
+                boards.forEach {
+                    Log.d(TAG, "$it - observerViewModel() called")
+                }
+                viewModel.addBoards(boards)
+                adapter.notifyItemRangeInserted(viewModel.boardList.lastIndex, boards.size)
             }
-            viewModel.addBoards(boards)
-            adapter.notifyItemRangeInserted(viewModel.boardList.lastIndex, boards.size)
         }
     }
 
@@ -56,19 +57,16 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
     }
 
     private fun initRecyclerView() {
+        viewModel.boardsData.value = null
         adapter = CommunityAdapter(viewModel.boardList) { board ->
             val action = CommunityFragmentDirections.actionCommunityFragmentToBoardFragment(board.id)
             findNavController().navigate(action)
         }
 
-        val boardListSize = viewModel.boardList.size
-        viewModel.reloadBoard()
-        if (boardListSize > 0)
-            adapter.notifyItemRangeRemoved(0, boardListSize)
-        viewModel.getBoards()
-
         mBinding.rvBoard.adapter = adapter
         mBinding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
+        reload()
+
         /*mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {; override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {; super.onScrolled(recyclerView, dx, dy)
                 if (!mBinding.rvBoard.canScrollVertically(1)) {
                     viewModel.getBoards(viewModel.boardList.last().timestamp)
@@ -77,10 +75,7 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
         })*/
 
         mBinding.swr.setOnRefreshListener {
-            val boardListSize = viewModel.boardList.size
-            viewModel.reloadBoard()
-            adapter.notifyItemRangeRemoved(0, boardListSize)
-            viewModel.getBoards()
+            reload()
             mBinding.swr.isRefreshing = false
         }
     }
@@ -97,5 +92,13 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
             mBinding.floatingBtn1.visibility = View.VISIBLE
         }
         isFabOpen = !isFabOpen
+    }
+
+    private fun reload() {
+        val boardListSize = viewModel.boardList.size
+        viewModel.reloadBoard()
+        if (boardListSize > 0)
+            adapter.notifyItemRangeRemoved(0, boardListSize)
+        viewModel.getBoards()
     }
 }
