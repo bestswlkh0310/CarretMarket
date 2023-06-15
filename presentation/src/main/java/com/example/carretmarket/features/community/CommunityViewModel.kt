@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board
+package com.example.carretmarket.features.community
 
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
@@ -8,62 +8,39 @@ import com.example.domain.model.Board
 import com.example.carretmarket.util.AdapterManager
 import com.example.carretmarket.util.Constant.TAG
 import com.example.domain.model.BoardList
-import com.example.domain.model.toBoard
 import com.example.domain.usecase.board.BoardUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class BoardViewModel @Inject constructor(
+class CommunityViewModel @Inject constructor(
     private val boardUseCases: BoardUseCases
 ) : BaseViewModel() {
-    private var _getBoardState = MutableSharedFlow<Board>()
-    val getBoardState: SharedFlow<Board> = _getBoardState
+    val boardsData = MutableLiveData<List<BoardList>>()
 
-    private var _getBoardsState = MutableSharedFlow<List<BoardList>>()
-    val getBoardsState: SharedFlow<List<BoardList>> = _getBoardsState
-
-    var boardList: MutableList<Board> = arrayListOf()
+    var boardList: MutableList<BoardList> = arrayListOf()
 
     fun onClickPost() { viewEvent(EVENT_ON_CLICK_POST) }
     fun onClickFloatingBar() { viewEvent(EVENT_ON_CLICK_FLAOTING_BAR) }
 
     fun addBoards(boards: List<BoardList>) {
-        AdapterManager.addItems(boardList, boards.map { it.toBoard() })
-    }
-
-    fun getBoard(id: Long? = null) {
-        viewModelScope.launch {
-            boardUseCases.getBoard(id).collect {board ->
-                _getBoardState.emit(board)
-            }
-        }
+        AdapterManager.addItems(boardList, boards.map { it })
     }
 
     fun getBoards(timestamp: Long? = null) {
         viewModelScope.launch(Dispatchers.IO) {
             boardUseCases.getBoards(timestamp).collect { boards ->
-                _getBoardsState.emit(boards)
+                boardsData.postValue(boards)
             }
         }
     }
 
     fun reloadBoard() {
         AdapterManager.clearItem(boardList)
-        show()
-        Log.d(TAG, "BoardViewModel - reloadBoard() called")
     }
     
-    fun show() {
-        for (i in boardList) {
-            Log.d(TAG, "${i.title} - show()")
-        }
-    }
-
     companion object {
         const val EVENT_ON_CLICK_POST = 0
         const val EVENT_ON_CLICK_FLAOTING_BAR = 1

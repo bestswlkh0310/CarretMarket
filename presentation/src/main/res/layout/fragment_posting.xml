@@ -3,11 +3,11 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.example.carretmarket.features.board.post.PostingFragment">
+    tools:context="com.example.carretmarket.features.community.post.PostingFragment">
     <data>
         <variable
             name="vm"
-            type="com.example.carretmarket.features.board.post.PostingViewModel" />
+            type="com.example.carretmarket.features.community.post.PostingViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

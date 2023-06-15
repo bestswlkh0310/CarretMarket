@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board.post
+package com.example.carretmarket.features.community.post
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -6,7 +6,6 @@ import com.example.carretmarket.base.BaseViewModel
 import com.example.domain.request.NewBoardRequest
 import com.example.domain.usecase.board.BoardUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

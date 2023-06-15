@@ -1,4 +1,4 @@
-package com.example.carretmarket.features.board
+package com.example.carretmarket.features.community
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -6,17 +6,20 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.domain.model.Board
 import com.example.carretmarket.databinding.ListBoardBinding
+import com.example.domain.model.BoardList
 import java.sql.Date
 import java.sql.Timestamp
 
-class BoardAdapter(
-    private val boardList: List<Board>
-    ): RecyclerView.Adapter<BoardAdapter.BoardHolder>() {
+class CommunityAdapter(
+    private val boardList: List<BoardList>,
+    private val onClickBoard: (BoardList) -> Unit
+    ): RecyclerView.Adapter<CommunityAdapter.BoardHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardHolder {
         return BoardHolder(ListBoardBinding.inflate(LayoutInflater.from(parent.context), parent, false)).apply {
             itemView.setOnClickListener {
                 val curPos: Int = adapterPosition
-                val board: Board = boardList[curPos]
+                val board: BoardList = boardList[curPos]
+                onClickBoard(board)
                 Toast.makeText(parent.context, board.toString(), Toast.LENGTH_SHORT).show()
             }
         }

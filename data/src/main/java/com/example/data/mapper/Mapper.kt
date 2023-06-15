@@ -20,8 +20,11 @@ fun BoardListResponse.toEntity(): BoardList {
 fun BoardResponse.toEntity(): Board {
     return Board(
         this.id,
+        this.title,
+        this.content,
+        this.author,
         this.timestamp,
-        this.title
+        this.editstamp
     )}
 
 fun TokenResponse.toEntity(): Token {

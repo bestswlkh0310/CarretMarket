@@ -5,16 +5,18 @@
     android:id="@+id/on_main_nav_graph"
     app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/boardFragment"
-        android:name="com.example.carretmarket.features.board.BoardFragment"
-        android:label="fragment_board"
-        tools:layout="@layout/fragment_board" >
+        android:id="@+id/communityFragment"
+        android:name="com.example.carretmarket.features.community.CommunityFragment"
+        android:label="fragment_community"
+        tools:layout="@layout/fragment_community">
         <action
-            android:id="@+id/action_boardFragment_to_postFragment"
+            android:id="@+id/action_communityFragment_to_postFragment"
             app:destination="@id/postFragment"
-            app:popUpToInclusive="true"
-            app:popUpTo="@id/boardFragment"
-            app:launchSingleTop="true"/>
+            app:popUpTo="@id/communityFragment" />
+        <action
+            android:id="@+id/action_communityFragment_to_boardFragment"
+            app:destination="@id/boardFragment"
+            app:popUpTo="@id/communityFragment"/>
     </fragment>
     <fragment
         android:id="@+id/mapFragment"
@@ -33,7 +35,7 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/postFragment"
-        android:name="com.example.carretmarket.features.board.post.PostingFragment"
+        android:name="com.example.carretmarket.features.community.post.PostingFragment"
         android:label="fragment_posting"
         tools:layout="@layout/fragment_posting" />
     <fragment
@@ -41,4 +43,14 @@
         android:name="com.example.carretmarket.features.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/boardFragment"
+        android:name="com.example.carretmarket.features.community.board.BoardFragment"
+        android:label="fragment_board"
+        tools:layout="@layout/fragment_board" >
+        <argument
+            android:name="boardId"
+            app:argType="long"
+            android:defaultValue="0L" />
+    </fragment>
 </navigation>

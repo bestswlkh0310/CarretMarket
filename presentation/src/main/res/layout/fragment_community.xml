@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.example.carretmarket.features.community.CommunityFragment">
+    <data>
+        <variable
+            name="vm"
+            type="com.example.carretmarket.features.community.CommunityViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/swr"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_board"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            </androidx.recyclerview.widget.RecyclerView>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_btn1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@id/floating_btn2"
+            app:layout_constraintEnd_toEndOf="@id/floating_btn2"
+            app:layout_constraintBottom_toBottomOf="@id/floating_btn2"
+            android:layout_margin="16dp"
+            android:contentDescription="post"
+            android:onClick="@{() -> vm.onClickPost()}"
+            app:fabSize="mini"
+            app:backgroundTint="@color/base"
+            app:rippleColor="#000"
+            app:srcCompat="@drawable/ic_create"
+            android:visibility="invisible"/>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_btn2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_margin="16dp"
+            android:contentDescription="add"
+            android:onClick="@{() -> vm.onClickFloatingBar()}"
+            app:backgroundTint="@color/base"
+            app:rippleColor="#000"
+            app:srcCompat="@drawable/ic_add"
+            android:visibility="visible"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="vm"
-            type="com.example.carretmarket.features.board.BoardViewModel" />
+            type="com.example.carretmarket.features.community.CommunityViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
