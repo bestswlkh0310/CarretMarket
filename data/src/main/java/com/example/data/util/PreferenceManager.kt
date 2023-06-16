@@ -7,10 +7,6 @@ class PreferenceManager(context: Context) {
     private val prefs: SharedPreferences =
         context.getSharedPreferences(CARRET_MARKET_APP, Context.MODE_PRIVATE)
 
-    var autoLogin: Boolean
-        get() = prefs.getBoolean(AUTO_LOGIN_KEY, false)
-        set(value) = prefs.edit().putBoolean(AUTO_LOGIN_KEY, value).apply()
-
     var accessToken: String
         get() = prefs.getString(ACCESS_TOKEN, "").toString()
         set(value) = prefs.edit().putString(ACCESS_TOKEN, value).apply()
@@ -26,7 +22,6 @@ class PreferenceManager(context: Context) {
 
     companion object {
         const val CARRET_MARKET_APP = "CARRET_MARKET_APP"
-        const val AUTO_LOGIN_KEY = "AUTO_LOGIN_KEY"
         const val ACCESS_TOKEN = "ACCESS_TOKEN"
         const val REFRESH_TOKEN = "REFRESH_TOKEN"
     }

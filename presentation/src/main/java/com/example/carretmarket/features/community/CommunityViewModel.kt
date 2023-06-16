@@ -1,12 +1,9 @@
 package com.example.carretmarket.features.community
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.carretmarket.base.BaseViewModel
-import com.example.domain.model.Board
 import com.example.carretmarket.util.AdapterManager
-import com.example.carretmarket.util.Constant.TAG
 import com.example.domain.model.BoardList
 import com.example.domain.usecase.board.BoardUseCases
 import dagger.hilt.android.lifecycle.HiltViewModel

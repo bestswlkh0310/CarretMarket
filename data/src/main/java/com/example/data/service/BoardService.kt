@@ -5,10 +5,10 @@ import com.example.data.model.BoardListResponse
 import com.example.data.model.BoardResponse
 import com.example.domain.request.NewBoardRequest
 import com.example.domain.request.PatchBoardRequest
-import retrofit2.Call
 import retrofit2.http.*
 
 interface BoardService {
+
     @GET("api/v1/board/{id}")
     suspend fun getBoardById(
         @Path("id") id: Long?
