@@ -3,6 +3,7 @@ package com.example.carretmarket.di
 import com.example.carretmarket.util.Constant.BASE_URL
 import com.example.carretmarket.wiget.CarretApplication
 import com.example.data.service.BoardService
+import com.example.data.service.CommentService
 import com.example.data.service.LoginService
 import com.example.data.service.VerifyService
 import com.google.gson.GsonBuilder
@@ -15,6 +16,7 @@ import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 import java.security.SecureRandom
 import java.security.cert.X509Certificate
 import java.util.concurrent.TimeUnit
@@ -42,6 +44,12 @@ object NetworkModule {
     @Singleton
     fun provideBoardService(retrofit: Retrofit): BoardService {
         return retrofit.create(BoardService::class.java)
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentService(retrofit: Retrofit): CommentService {
+        return retrofit.create(CommentService::class.java)
     }
 
     @Singleton

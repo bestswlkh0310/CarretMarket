@@ -8,7 +8,8 @@
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/base">
         <TextView
             android:id="@+id/nickname"
             android:layout_width="75dp"
@@ -17,6 +18,7 @@
             app:layout_constraintEnd_toStartOf="@id/content"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_margin="5dp"
+            android:textColor="@color/black"
             android:text="아이디"/>
         <TextView
             android:id="@+id/content"
@@ -25,6 +27,7 @@
             app:layout_constraintStart_toEndOf="@id/nickname"
             app:layout_constraintEnd_toStartOf="@id/timestamp"
             app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/black"
             android:text="이야ㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑㅑ"/>
         <TextView
             android:id="@+id/timestamp"
@@ -35,6 +38,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="5dp"
             android:text="7분 전"
+            android:textColor="@color/black"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

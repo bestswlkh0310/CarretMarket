@@ -64,7 +64,7 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
         }
 
         mBinding.rvBoard.adapter = adapter
-        mBinding.rvBoard.layoutManager = LinearLayoutManager(requireContext())
+        mBinding.rvBoard.layoutManager = LinearLayoutManager(context)
         reload()
 
         /*mBinding.rvBoard.addOnScrollListener(object: RecyclerView.OnScrollListener() {; override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {; super.onScrolled(recyclerView, dx, dy)

@@ -1,12 +1,15 @@
 package com.example.carretmarket.di
 
 import com.example.data.datasource.BoardDataSource
+import com.example.data.datasource.CommentDataSource
 import com.example.data.datasource.LoginDataSource
 import com.example.data.datasource.VerifyDataSource
 import com.example.data.datasource.impl.BoardDataSourceImpl
+import com.example.data.datasource.impl.CommentDataSourceImpl
 import com.example.data.datasource.impl.LoginDataSourceImpl
 import com.example.data.datasource.impl.VerifyDataSourceImpl
 import com.example.data.service.BoardService
+import com.example.data.service.CommentService
 import com.example.data.service.LoginService
 import com.example.data.service.VerifyService
 import dagger.Module
@@ -29,4 +32,8 @@ object DataSourceModule {
     @Provides
     @Singleton
     fun provideLoginDataSource(loginService: LoginService): LoginDataSource = LoginDataSourceImpl(loginService)
+
+    @Provides
+    @Singleton
+    fun provideCommentDataSource(commentService: CommentService): CommentDataSource = CommentDataSourceImpl(commentService)
 }

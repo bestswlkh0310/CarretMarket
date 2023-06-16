@@ -1,6 +1,7 @@
 package com.example.carretmarket.di
 
 import com.example.domain.repository.BoardRepository
+import com.example.domain.repository.CommentRepository
 import com.example.domain.repository.LoginRepository
 import com.example.domain.repository.VerifyRepository
 import com.example.domain.usecase.board.BoardUseCases
@@ -9,6 +10,11 @@ import com.example.domain.usecase.board.GetBoard
 import com.example.domain.usecase.board.GetBoards
 import com.example.domain.usecase.board.PatchBoard
 import com.example.domain.usecase.board.PostBoard
+import com.example.domain.usecase.comment.CommentUseCases
+import com.example.domain.usecase.comment.DeleteComment
+import com.example.domain.usecase.comment.GetComments
+import com.example.domain.usecase.comment.PatchComment
+import com.example.domain.usecase.comment.PostComment
 import com.example.domain.usecase.login.Login
 import com.example.domain.usecase.login.LoginUseCases
 import com.example.domain.usecase.login.Refresh
@@ -51,6 +57,17 @@ object UseCasesModule {
             Login(loginRepository),
             Register(loginRepository),
             Refresh(loginRepository)
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun provideCommentUseCases(commentRepository: CommentRepository): CommentUseCases {
+        return CommentUseCases(
+            GetComments(commentRepository),
+            PostComment(commentRepository),
+            PatchComment(commentRepository),
+            DeleteComment(commentRepository)
         )
     }
 }
