@@ -17,6 +17,7 @@ import com.example.carretmarket.base.BaseFragment
 import com.example.carretmarket.databinding.FragmentCommunityBinding
 import com.example.carretmarket.features.community.CommunityViewModel.Companion.EVENT_ON_CLICK_FLAOTING_BAR
 import com.example.carretmarket.features.community.CommunityViewModel.Companion.EVENT_ON_CLICK_POST
+import com.example.carretmarket.features.community.post.PostingViewModel
 import com.example.carretmarket.util.Constant.TAG
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,9 +38,6 @@ class CommunityFragment: BaseFragment<FragmentCommunityBinding, CommunityViewMod
 
         viewModel.boardsData.observe(this) { boards ->
             if (boards != null) {
-                boards.forEach {
-                    Log.d(TAG, "$it - observerViewModel() called")
-                }
                 viewModel.addBoards(boards)
                 adapter.notifyItemRangeInserted(viewModel.boardList.lastIndex, boards.size)
             }

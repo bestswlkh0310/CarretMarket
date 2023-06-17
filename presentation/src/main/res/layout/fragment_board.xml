@@ -32,6 +32,13 @@
             android:textColor="@color/base"
             android:text="content"
             />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="Patch"
+            android:onClick="@{() -> vm.onClickPatchBoard()}"/>
         <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
             android:id="@+id/comments"
             android:layout_width="match_parent"

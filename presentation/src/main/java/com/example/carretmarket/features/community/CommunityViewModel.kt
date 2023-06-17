@@ -16,7 +16,6 @@ class CommunityViewModel @Inject constructor(
     private val boardUseCases: BoardUseCases
 ) : BaseViewModel() {
     val boardsData = MutableLiveData<List<BoardList>>()
-
     var boardList: MutableList<BoardList> = arrayListOf()
 
     fun onClickPost() { viewEvent(EVENT_ON_CLICK_POST) }

@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.carretmarket.base.BaseFragment
@@ -20,6 +21,12 @@ class BoardFragment : BaseFragment<FragmentBoardBinding, BoardViewModel>() {
     private lateinit var adapter: CommentAdapter
 
     override fun observerViewModel() {
+        bindingViewEvent { event ->
+            when (event) {
+                BoardViewModel.EVENT_ON_CLICK_PATCH -> findNavController().navigate(BoardFragmentDirections.actionBoardFragmentToPatchFragment(args.boardId))
+            }
+        }
+
         viewModel.boardData.observe(this) { board ->
             with(mBinding) {
                 title.text = board.title
@@ -55,6 +62,7 @@ class BoardFragment : BaseFragment<FragmentBoardBinding, BoardViewModel>() {
 
     private fun initRecyclerView() {
         viewModel.commentsData.value = null
+        viewModel.commentList.clear()
         adapter = CommentAdapter(viewModel.commentList)
         with(mBinding) {
             rvComments.adapter = adapter

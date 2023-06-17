@@ -14,9 +14,7 @@ class PostingFragment : BaseFragment<FragmentPostingBinding, PostingViewModel>()
     override fun observerViewModel() {
         bindingViewEvent { event ->
             when (event) {
-                PostingViewModel.EVENT_ON_CLICK_UPLOAD -> {
-                    findNavController().popBackStack()
-                }
+                PostingViewModel.EVENT_ON_CLICK_UPLOAD -> findNavController().popBackStack()
             }
         }
     }

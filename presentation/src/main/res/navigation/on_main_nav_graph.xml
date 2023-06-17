@@ -54,5 +54,19 @@
             android:name="boardId"
             app:argType="long"
             android:defaultValue="0L" />
+        <action
+            android:id="@+id/action_boardFragment_to_patchFragment"
+            app:destination="@id/patchFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/patchFragment"
+        android:name="com.example.carretmarket.features.community.board.patch.PatchFragment"
+        android:label="fragment_patching"
+        tools:layout="@layout/fragment_patching" >
+        <argument
+            android:name="boardId"
+            app:argType="long"
+            android:defaultValue="0L"
+            />
     </fragment>
 </navigation>

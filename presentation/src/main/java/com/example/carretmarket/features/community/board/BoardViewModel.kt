@@ -56,4 +56,12 @@ class BoardViewModel @Inject constructor(
             ).collect {}
         }
     }
+
+    fun onClickPatchBoard() {
+        viewEvent(EVENT_ON_CLICK_PATCH)
+    }
+
+    companion object {
+        const val EVENT_ON_CLICK_PATCH = 0
+    }
 }
